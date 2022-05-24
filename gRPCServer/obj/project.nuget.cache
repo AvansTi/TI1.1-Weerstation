@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Se0tbB71cpf+j/Gp8bBdJxolsLJwESszGCpNB3JP1DDJ9bRO7zDaFuc2itqwJPMvmM0hQcXimfqXcmq9g2/rRw==",
+  "dgSpecHash": "vM4XO7U2tkmorFdf+KRNtsK5UpTWJvobkroROmCULIZO7CN2n4ww1ddQy8Sn122kGBWeWarveqBimblyWEDngA==",
   "success": true,
   "projectFilePath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj",
   "expectedPackageFiles": [
@@ -25,11 +25,7 @@
     "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.extensions.primitives\\3.0.3\\microsoft.extensions.primitives.3.0.3.nupkg.sha512",
     "C:\\Users\\Stijn\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.1\\system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
     "C:\\Users\\Stijn\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+    "C:\\Users\\Stijn\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
   ],
   "logs": []
 }
