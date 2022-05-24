@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "gRPCClient";
+
+package weatherRequest;
+
+// The greeting service definition.
+service WeatherSaver {
+  // Sends a greeting
+  rpc SaveWeatherData (WeatherData) returns (SavedReply);
+}
+
+// The request message containing the user's name.
+message WeatherDataPoint {
+  string nameStation = 1;
+  double temp = 2;
+  double rain = 3;
+  double windspeed = 4;
+
+}
+
+message WeatherData{
+	repeated WeatherDataPoint WeatherDataPoints = 1;
+}
+
+// The response message containing the greetings.
+message SavedReply {
+  string message = 1;
+}
