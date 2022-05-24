@@ -2,6 +2,7 @@
 using System;
 using gRPCClient;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace gRPClient
 {
@@ -9,6 +10,9 @@ namespace gRPClient
     {
         static async Task Main(string[] args)
         {
+            List<WeatherDataPoint> points = new List<WeatherDataPoint>();
+            points.Add(new WeatherDataPoint { NameStation = "StansWeerstation", Rain = 13.55, Temp = 14.55, Windspeed = 12.14 });
+            points.Add(new WeatherDataPoint { NameStation = "StansWeerstation", Rain = 14.55, Temp = 17.99, Windspeed = 19.88 });
             Console.WriteLine("Druk op een toets om te starten");
             Console.ReadLine();
             using var channel = GrpcChannel.ForAddress("https://localhost:5001");
@@ -18,8 +22,7 @@ namespace gRPClient
                 {
                     WeatherDataPoints =
                     {
-                        new WeatherDataPoint {NameStation = "StansWeerstation", Rain = 13.55, Temp = 14.55, Windspeed = 12.14 },
-                        new WeatherDataPoint {NameStation = "StansWeerstation", Rain = 14.55, Temp = 17.99, Windspeed = 19.88 }
+                        points
                     }
                 });
             Console.WriteLine(reply.Message);
