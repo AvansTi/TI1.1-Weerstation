@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj": {}
+    "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj": {
+    "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj",
+        "projectUniqueName": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj",
         "projectName": "gRPCServer",
-        "projectPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj",
-        "packagesPath": "C:\\Users\\stanv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\obj\\",
+        "projectPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj",
+        "packagesPath": "C:\\Users\\Stijn\\.nuget\\packages\\",
+        "outputPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\stanv\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Stijn\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +41,10 @@
             "Google.Protobuf": {
               "target": "Package",
               "version": "[3.15.5, )"
+            },
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.34.0, )"
             },
             "Grpc.AspNetCore": {
               "target": "Package",
@@ -69,6 +71,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -77,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
