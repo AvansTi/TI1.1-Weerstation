@@ -1,2 +1,0 @@
-obj\Debug\net5.0\Protos/WheaterRequest.cs \
-obj\Debug\net5.0\Protos/WheaterRequestGrpc.cs: Protos/wheaterRequest.proto

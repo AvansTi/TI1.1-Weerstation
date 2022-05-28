@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\stanv\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\stanv\\.nuget\\packages"
-    ]
-  }
-}
