@@ -15,7 +15,7 @@ namespace gRPClient
             points.Add(new WeatherDataPoint { NameStation = "StansWeerstation", Rain = 14.55, Temp = 17.99, Windspeed = 19.88 });
             Console.WriteLine("Druk op een toets om te starten");
             Console.ReadLine();
-            using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            using var channel = GrpcChannel.ForAddress("http://localhost:8080");
             var client = new WeatherSaver.WeatherSaverClient(channel);
             var reply = await client.SaveWeatherDataAsync(
                 new WeatherData

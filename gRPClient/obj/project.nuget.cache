@@ -1,22 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "x3oxeQLGe3qBrgfbzhqyVAWjX/2XSySGZGKLZ+AhJ4gSJIvYV5T59N0Y8OxH5gWrXCL4qUj3U+HLGQQV45ww9A==",
+  "dgSpecHash": "cDCerv4M4TADGkntUJ2DXGPD2w+582m/1M5+e8erexSlNz8FfVFjyN8GSVaES6oiTMT6TBC5GWfwrpqNcqwFkw==",
   "success": true,
-  "projectFilePath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\gRPClient.csproj",
+  "projectFilePath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\gRPClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Stijn\\.nuget\\packages\\google.protobuf\\3.15.5\\google.protobuf.3.15.5.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\grpc.core.api\\2.35.0\\grpc.core.api.2.35.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\grpc.net.client\\2.35.0\\grpc.net.client.2.35.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\grpc.net.common\\2.35.0\\grpc.net.common.2.35.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\grpc.tools\\2.34.0\\grpc.tools.2.34.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.1\\system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\Stijn\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+    "C:\\Users\\stanv\\.nuget\\packages\\google.protobuf\\3.15.5\\google.protobuf.3.15.5.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\grpc.core.api\\2.35.0\\grpc.core.api.2.35.0.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\grpc.net.client\\2.35.0\\grpc.net.client.2.35.0.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\grpc.net.common\\2.35.0\\grpc.net.common.2.35.0.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\grpc.tools\\2.34.0\\grpc.tools.2.34.0.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.5.1\\system.diagnostics.diagnosticsource.4.5.1.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\stanv\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
   ],
   "logs": []
 }

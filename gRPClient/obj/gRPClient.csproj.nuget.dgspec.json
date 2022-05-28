@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\gRPClient.csproj": {}
+    "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\gRPClient.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\gRPClient.csproj": {
+    "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\gRPClient.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\gRPClient.csproj",
+        "projectUniqueName": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\gRPClient.csproj",
         "projectName": "gRPClient",
-        "projectPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\gRPClient.csproj",
-        "packagesPath": "C:\\Users\\Stijn\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPClient\\obj\\",
+        "projectPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\gRPClient.csproj",
+        "packagesPath": "C:\\Users\\stanv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPClient\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Stijn\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\stanv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,30 +65,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

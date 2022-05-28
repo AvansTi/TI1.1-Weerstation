@@ -15,12 +15,12 @@
           "lib/netstandard2.0/Google.Protobuf.dll": {}
         }
       },
-      "Grpc.AspNetCore/2.34.0": {
+      "Grpc.AspNetCore/2.35.0": {
         "type": "package",
         "dependencies": {
           "Google.Protobuf": "3.14.0",
-          "Grpc.AspNetCore.Server.ClientFactory": "2.34.0",
-          "Grpc.Tools": "2.34.0"
+          "Grpc.AspNetCore.Server.ClientFactory": "2.35.0",
+          "Grpc.Tools": "2.35.0"
         },
         "compile": {
           "lib/net5.0/_._": {}
@@ -29,10 +29,10 @@
           "lib/net5.0/_._": {}
         }
       },
-      "Grpc.AspNetCore.Server/2.34.0": {
+      "Grpc.AspNetCore.Server/2.35.0": {
         "type": "package",
         "dependencies": {
-          "Grpc.Net.Common": "2.34.0"
+          "Grpc.Net.Common": "2.35.0"
         },
         "compile": {
           "lib/net5.0/Grpc.AspNetCore.Server.dll": {}
@@ -44,11 +44,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Grpc.AspNetCore.Server.ClientFactory/2.34.0": {
+      "Grpc.AspNetCore.Server.ClientFactory/2.35.0": {
         "type": "package",
         "dependencies": {
-          "Grpc.AspNetCore.Server": "2.34.0",
-          "Grpc.Net.ClientFactory": "2.34.0"
+          "Grpc.AspNetCore.Server": "2.35.0",
+          "Grpc.Net.ClientFactory": "2.35.0"
         },
         "compile": {
           "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll": {}
@@ -86,10 +86,10 @@
           "lib/net5.0/Grpc.Net.Client.dll": {}
         }
       },
-      "Grpc.Net.ClientFactory/2.34.0": {
+      "Grpc.Net.ClientFactory/2.35.0": {
         "type": "package",
         "dependencies": {
-          "Grpc.Net.Client": "2.34.0",
+          "Grpc.Net.Client": "2.35.0",
           "Microsoft.Extensions.Http": "3.0.3"
         },
         "compile": {
@@ -235,6 +235,13 @@
           "lib/netcoreapp3.0/Microsoft.Extensions.Primitives.dll": {}
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.11.1": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props": {},
+          "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
+        }
+      },
       "System.Diagnostics.DiagnosticSource/4.5.1": {
         "type": "package",
         "compile": {
@@ -285,28 +292,28 @@
         "lib/netstandard2.0/Google.Protobuf.xml"
       ]
     },
-    "Grpc.AspNetCore/2.34.0": {
-      "sha512": "0KED45KfO2/pFgEpoEwmnYL4IrN+tHmYVav11A9iVHaM8d73ic2pchkUJjM9W4AYAGpXHlkfMYzkqwPWpP363w==",
+    "Grpc.AspNetCore/2.35.0": {
+      "sha512": "D2cwAX9KXukf99DmUaggmMg7ctGEWHuI/zNwnnAmMWD9STcNI2UVs243mAHJkxo3ZGjfaIwMu3FxYYpACZq3rA==",
       "type": "package",
-      "path": "grpc.aspnetcore/2.34.0",
+      "path": "grpc.aspnetcore/2.35.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "grpc.aspnetcore.2.34.0.nupkg.sha512",
+        "grpc.aspnetcore.2.35.0.nupkg.sha512",
         "grpc.aspnetcore.nuspec",
         "lib/net5.0/_._",
         "lib/netcoreapp3.0/_._",
         "packageIcon.png"
       ]
     },
-    "Grpc.AspNetCore.Server/2.34.0": {
-      "sha512": "V937xHNfIQM6X2dx8ManMK+xfkjmxwVfL/kWa+kZiLnf4E0VYd/A2ocrKDnn7EQk7SV2tkCD1+fUsG3qRsKNmQ==",
+    "Grpc.AspNetCore.Server/2.35.0": {
+      "sha512": "YAVqnIw8nc2qK01LFVz578FW0Fy6crOabb8knmCMqnxX8udliMRKjZdruZlDI3aRMgZq4nzV4BDF/z3/wtctNQ==",
       "type": "package",
-      "path": "grpc.aspnetcore.server/2.34.0",
+      "path": "grpc.aspnetcore.server/2.35.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "grpc.aspnetcore.server.2.34.0.nupkg.sha512",
+        "grpc.aspnetcore.server.2.35.0.nupkg.sha512",
         "grpc.aspnetcore.server.nuspec",
         "lib/net5.0/Grpc.AspNetCore.Server.dll",
         "lib/net5.0/Grpc.AspNetCore.Server.pdb",
@@ -317,14 +324,14 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.AspNetCore.Server.ClientFactory/2.34.0": {
-      "sha512": "4NsZNtnKXt+u2KSczhU7eI+QX/XEDPnMxUtqpeMPNuI38ZEwB9HEG5W2KZQzT6vVLa8VR2GBuY0DDwWyP5hWlg==",
+    "Grpc.AspNetCore.Server.ClientFactory/2.35.0": {
+      "sha512": "h5FYkqwvB5YPjeEYa1YLil5OtO9APeyolrTUkrwrafBAN5pEZJb/jXe1SHagymbKt6R9XdDjqpYPjLiUtJ4N3g==",
       "type": "package",
-      "path": "grpc.aspnetcore.server.clientfactory/2.34.0",
+      "path": "grpc.aspnetcore.server.clientfactory/2.35.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "grpc.aspnetcore.server.clientfactory.2.34.0.nupkg.sha512",
+        "grpc.aspnetcore.server.clientfactory.2.35.0.nupkg.sha512",
         "grpc.aspnetcore.server.clientfactory.nuspec",
         "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll",
         "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.pdb",
@@ -373,14 +380,14 @@
         "packageIcon.png"
       ]
     },
-    "Grpc.Net.ClientFactory/2.34.0": {
-      "sha512": "RYMFSfucrjkrlikt0cDwh7qsxvxTIuVLHKrooqy7xoXkc0fqsXNzBHCYUqbvxiqUe0vl0mugsUGb9yZDEWQNIg==",
+    "Grpc.Net.ClientFactory/2.35.0": {
+      "sha512": "gukEptk/JDNTe8BRDYYeb4u6iQupECx1Sr4VQVxy7lvH2Y4xX9fLvbr0Z2KaSY0IiKcaqjqHnB7ssLjTseUvfw==",
       "type": "package",
-      "path": "grpc.net.clientfactory/2.34.0",
+      "path": "grpc.net.clientfactory/2.35.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "grpc.net.clientfactory.2.34.0.nupkg.sha512",
+        "grpc.net.clientfactory.2.35.0.nupkg.sha512",
         "grpc.net.clientfactory.nuspec",
         "lib/net5.0/Grpc.Net.ClientFactory.dll",
         "lib/net5.0/Grpc.Net.ClientFactory.pdb",
@@ -613,6 +620,85 @@
         "microsoft.extensions.primitives.nuspec"
       ]
     },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.11.1": {
+      "sha512": "1jHxWlSi6/ryWODk6SUjsZPHk/BdsucxqhIi1szEzwc84e8nvZWF45qRXcT2gWPISJ3Ybbyg2LsNG6yX8r7VuA==",
+      "type": "package",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.11.1",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "EULA.md",
+        "ThirdPartyNotices.txt",
+        "build/Container.props",
+        "build/Container.targets",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props",
+        "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets",
+        "build/Rules/GeneralBrowseObject.xaml",
+        "build/Rules/cs-CZ/GeneralBrowseObject.xaml",
+        "build/Rules/de-DE/GeneralBrowseObject.xaml",
+        "build/Rules/es-ES/GeneralBrowseObject.xaml",
+        "build/Rules/fr-FR/GeneralBrowseObject.xaml",
+        "build/Rules/it-IT/GeneralBrowseObject.xaml",
+        "build/Rules/ja-JP/GeneralBrowseObject.xaml",
+        "build/Rules/ko-KR/GeneralBrowseObject.xaml",
+        "build/Rules/pl-PL/GeneralBrowseObject.xaml",
+        "build/Rules/pt-BR/GeneralBrowseObject.xaml",
+        "build/Rules/ru-RU/GeneralBrowseObject.xaml",
+        "build/Rules/tr-TR/GeneralBrowseObject.xaml",
+        "build/Rules/zh-CN/GeneralBrowseObject.xaml",
+        "build/Rules/zh-TW/GeneralBrowseObject.xaml",
+        "build/ToolsTarget.props",
+        "build/ToolsTarget.targets",
+        "icon.png",
+        "microsoft.visualstudio.azure.containers.tools.targets.1.11.1.nupkg.sha512",
+        "microsoft.visualstudio.azure.containers.tools.targets.nuspec",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Common.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Shared.dll",
+        "tools/Microsoft.VisualStudio.Containers.Tools.Tasks.dll",
+        "tools/Newtonsoft.Json.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/cs/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/de/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/es/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/fr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/it/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ja/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ko/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pl/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/pt-BR/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/ru/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/tr/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/utils/KillProcess.exe",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hans/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Common.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Shared.resources.dll",
+        "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
+      ]
+    },
     "System.Diagnostics.DiagnosticSource/4.5.1": {
       "sha512": "zCno/m44ymWhgLFh7tELDG9587q0l/EynPM0m4KgLaWQbz/TEKvNRX2YT5ip2qXW/uayifQ2ZqbnErsKJ4lYrQ==",
       "type": "package",
@@ -688,30 +774,33 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "Google.Protobuf >= 3.15.5",
-      "Grpc.AspNetCore >= 2.34.0",
+      "Grpc.AspNetCore >= 2.35.0",
       "Grpc.Net.Client >= 2.35.0",
-      "Grpc.Tools >= 2.36.1"
+      "Grpc.Tools >= 2.36.1",
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.11.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Stijn\\.nuget\\packages\\": {}
+    "C:\\Users\\stanv\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj",
+      "projectUniqueName": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj",
       "projectName": "gRPCServer",
-      "projectPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\gRPCServer.csproj",
-      "packagesPath": "C:\\Users\\Stijn\\.nuget\\packages\\",
-      "outputPath": "C:\\Dev\\weerstation\\TI1.1-Weerstation\\gRPCServer\\obj\\",
+      "projectPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\gRPCServer.csproj",
+      "packagesPath": "C:\\Users\\stanv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\stanv\\source\\repos\\gRPCDemo\\gRPCServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Stijn\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\stanv\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -747,6 +836,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[2.36.1, )"
+          },
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "target": "Package",
+            "version": "[1.11.1, )"
           }
         },
         "imports": [
@@ -759,24 +852,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -785,7 +860,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   }
