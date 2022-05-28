@@ -15,6 +15,9 @@ namespace gRPCServer
 
         public override Task<SavedReply> SaveWeatherData(WeatherData request, ServerCallContext context)
         {
+            foreach(WeatherDataPoint datapoint in request.WeatherDataPoints){
+                Console.WriteLine(datapoint.ToString());
+            }
             return Task.FromResult(new SavedReply
             {
                 Message = request.WeatherDataPoints.Count + " Data points are saved"
