@@ -21,7 +21,7 @@ message WeatherDataPoint {
   int32 outsideTemp = 7;
   int32 rainRate = 8;
   int32 solarRad = 9;
-  string stationName = 10;
+  WeatherStation station = 10;
   int32 sunrise = 11;
   int32 sunset = 12;
   google.protobuf.Timestamp timestamp = 13;
@@ -30,6 +30,13 @@ message WeatherDataPoint {
   int32 windSpeed = 16;
   int32 windDir = 17;
   int32 xmitBatt = 18;
+}
+
+message WeatherStation{
+	int32 stationId = 1;
+	string name = 2;
+	string location = 3;
+	string description = 4;
 }
 
 message WeatherData{

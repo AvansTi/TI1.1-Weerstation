@@ -24,7 +24,12 @@ namespace gRPClient
                     OutsideTemp = 733948,
                     RainRate = 892,
                     SolarRad = 1289,
-                    StationName = "Het echter weer station",
+                    Station = new WeatherStation 
+                    {
+                        Name = "Het TI weerstation", 
+                        Description = "Dit is het weerstation van Avans" ,
+                        Location = "Breda",
+                    },
                     Sunrise = 3487,
                     Sunset = 3984,
                     Timestamp = DateTimeOffset.Now.ToTimestamp(),
@@ -48,7 +53,12 @@ namespace gRPClient
                     OutsideTemp = 733948,
                     RainRate = 892,
                     SolarRad = 1289,
-                    StationName = "Het 2e echter weer station",
+                    Station = new WeatherStation
+                    {
+                        Name = "Het stan weerstation",
+                        Description = "Dit is het weerstation van Stan",
+                        Location = "Gorinchem",
+                    },
                     Sunrise = 3487,
                     Sunset = 3984,
                     Timestamp = DateTimeOffset.Now.ToTimestamp(),
