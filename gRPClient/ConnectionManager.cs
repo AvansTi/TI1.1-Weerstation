@@ -10,6 +10,7 @@ namespace gRPClient
     public class ConnectionManager : IWeatherConsoleDAO
     {
         private string comport;
+        private int baudrate;
 
         /// <summary>
         /// TODO remove constructor as it is used as test code
@@ -24,19 +25,20 @@ namespace gRPClient
                 Console.WriteLine(item);
             }
             comport = serialPorts[0];
+            baudrate = 19200;
         }
 
         public List<WeatherDataPoint> Get()
         {
             WeatherStationConnection connection = new WeatherStationConnection();
-            int result = connection.OpenSerialPort(this.comport);
+            int result = connection.OpenSerialPort(this.comport, this.baudrate);
 
             //Could not open the com port, return null
             if(result == OK)
                 result = connection.WakeUp();
 
-            //if(result == OK)
-                //result = connection.GetRealTimeData();
+            if(result == OK)
+                result = connection.GetRealTimeData();
 
             result = connection.CloseSerialPort();
 
