@@ -116,12 +116,15 @@ namespace gRPClient
                 }
             }
 
-            byte[] bytes = new byte[100];
-            //Remove unused acknowledment bit
-            Buffer.BlockCopy(response, 1, bytes, 0, bytes.Length);
-            WeatherStationDataStruct data = new WeatherStationDataStruct();
-            data.Fill(bytes);
-            return OK;
+            if(OK == result)
+            {
+                byte[] bytes = new byte[100];
+                //Remove unused acknowledment bit
+                Buffer.BlockCopy(response, 1, bytes, 0, bytes.Length);
+                WeatherStationDataStruct data = new WeatherStationDataStruct();
+                data.Fill(bytes);
+            }
+            return result;
         }
 
         /// <summary>
