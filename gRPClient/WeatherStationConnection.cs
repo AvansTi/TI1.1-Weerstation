@@ -101,20 +101,24 @@ namespace gRPClient
                 Console.WriteLine($"GetRealTimeData: response has incorrect length.\n Length should be 100, actual: {count}.");
             }
 
-            //if (OK == result)
-            //{
-            //    crc = 0;
-            //    for (idx = 0; idx < 99; idx++)
-            //    {
-            //        crc = crc_table[(crc >> 8) ^ (byte)response[idx + 1]] ^ (crc << 8);
-            //    }
+            if (OK == result)
+            {
+                crc = 0;
+                for (idx = 0; idx < 99; idx++)
+                {
+                    var left = (uint)(crc >> 8);
+                    var mid = (uint)response[idx + 1];
+                    var right = (uint)(crc << 8);
+                    var table = crc_table[left ^ mid];
+                    crc = (ushort)(table ^ right);
+                }
 
-            //    if (crc == 1)
-            //    {
-            //        result = NOK;
-            //        Console.WriteLine("VP2GetRealTimeData: crc error!");
-            //    }
-            //}
+                if (crc == 1)
+                {
+                    result = NOK;
+                    Console.WriteLine("VP2GetRealTimeData: crc error!");
+                }
+            }
 
             byte[] bytes = new byte[100];
             //Remove unused acknowledment bit
@@ -143,7 +147,7 @@ namespace gRPClient
         }
 
         // Zie pagina 33 uit het document: VantageSerialProtocolDocs_v230.pdf
-        ushort[] crc_table = {
+        uint[] crc_table = {
             0x0, 0x1021, 0x2042, 0x3063, 0x4084, 0x50a5, 0x60c6, 0x70e7,
             0x8108, 0x9129, 0xa14a, 0xb16b, 0xc18c, 0xd1ad, 0xe1ce, 0xf1ef,
             0x1231, 0x210, 0x3273, 0x2252, 0x52b5, 0x4294, 0x72f7, 0x62d6,
