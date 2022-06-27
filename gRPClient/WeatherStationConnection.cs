@@ -78,7 +78,8 @@ namespace gRPClient
             int result = OK;
             char[] cmd = "LOOP 1\n".ToCharArray();
             int count;
-            char[] response = new char[255];
+            //Changed the response type to byte from char. C# chars are 16-bit
+            byte[] response = new byte[255];
             char ch;
             //CRC works when casted to an int
             ushort crc;
@@ -86,7 +87,7 @@ namespace gRPClient
 
             //Remove unused characters in the buffer
             while (Conn.BytesToRead > 0)
-                Conn.Read(new char[Conn.BytesToRead], 0, Conn.BytesToRead);
+                Conn.Read(new byte[Conn.BytesToRead], 0, Conn.BytesToRead);
 
             // Issue de LOOP
             Conn.Write(cmd, 0, cmd.Length);
@@ -115,14 +116,11 @@ namespace gRPClient
             //    }
             //}
 
-            //byte[] bytes = new byte[100];
-            //Buffer.BlockCopy(response, 0, bytes, 0, bytes.Length);
-
-            //// Pin the managed memory while, copy it out the data, then unpin it
-            //GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            //WeatherStationDataStruct theStructure = (WeatherStationDataStruct)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(WeatherStationDataStruct));
-            //handle.Free();
-            //Console.WriteLine(theStructure.ToString());
+            byte[] bytes = new byte[100];
+            //Remove unused acknowledment bit
+            Buffer.BlockCopy(response, 1, bytes, 0, bytes.Length);
+            WeatherStationDataStruct data = new WeatherStationDataStruct();
+            data.Fill(bytes);
             return OK;
         }
 

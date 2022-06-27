@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace gRPClient
 {
@@ -8,7 +7,6 @@ namespace gRPClient
     {
 		//	type		varnaam		offset	Omschrijving
 		//      ----------------------------------------------------------------------
-		byte ack;			// 	ACK
 		char c1;			// 0	karakter "L"
 		char c2;			// 1	karakter "O"
 		char c3;			// 2	karakter "O"
@@ -59,6 +57,55 @@ namespace gRPClient
 		ushort Sunset;      // 93 	Zonsondergang (uur*100+min)
 		byte LF;			// 95 	(\n) 0x0a
 		byte CR;			// 96 	(\r) 0x0d
-		ushort CRC;			// 97 	CRC check bytes (CCITT-16 standard)
-	}
+		ushort CRC;         // 97 	CRC check bytes (CCITT-16 standard)
+
+        public void Fill(byte[] bytes)
+        {
+			c1 = (char)bytes[0];
+			c2 = (char)bytes[1];
+			c3 = (char)bytes[2];
+			c4 = (char)bytes[3];
+			PacketType = bytes[4];
+			NextRec = BitConverter.ToUInt16(bytes[5..7]);
+			Barometer = BitConverter.ToUInt16(bytes[7..9]);
+			InsideTemp = BitConverter.ToInt16(bytes[9..11]);
+			InsideHum = bytes[11];
+			OutsideTemp = BitConverter.ToInt16(bytes[12..14]);
+			WindSpeed = bytes[14];
+			AvgWindSpeed = bytes[15];
+			WindDir = BitConverter.ToUInt16(bytes[16..18]);
+			XtraTemps = bytes[18..25];
+			SoilTemps = bytes[25..29];
+			LeafTemps = bytes[29..33];
+			OutsideHum = bytes[33];
+			XtraHums = bytes[34..41];
+			RainRate = BitConverter.ToUInt16(bytes[41..43]);
+			UVLevel = bytes[43];
+			SolarRad = BitConverter.ToUInt16(bytes[44..46]);
+			StormRain = BitConverter.ToUInt16(bytes[46..48]);
+			StormStart = BitConverter.ToUInt16(bytes[48..50]);
+			RainDay = BitConverter.ToUInt16(bytes[50..52]);
+			RainMonth = BitConverter.ToUInt16(bytes[52..54]);
+			RainYear = BitConverter.ToUInt16(bytes[54..56]);
+			ETDay = BitConverter.ToUInt16(bytes[56..58]);
+			ETMonth = BitConverter.ToUInt16(bytes[58..60]);
+			ETYear = BitConverter.ToUInt16(bytes[60..62]);
+			SoilMoist = BitConverter.ToUInt32(bytes[62..66]);
+			LeafWet = BitConverter.ToUInt32(bytes[66..70]);
+			AlarmInside = bytes[70];
+			AlarmRain = bytes[71];
+			AlarmOut = BitConverter.ToUInt16(bytes[72..74]);
+			AlarmXtra = bytes[74..82];
+			AlarmSL = BitConverter.ToUInt32(bytes[82..86]);
+			XmitBatt = bytes[86];
+			BattLevel = BitConverter.ToUInt16(bytes[87..89]);
+			ForeIcon = bytes[89];
+			Rule = bytes[90];
+			Sunrise = BitConverter.ToUInt16(bytes[91..93]);
+			Sunset = BitConverter.ToUInt16(bytes[93..95]);
+			LF = bytes[95];
+			CR = bytes[96];
+			CRC = BitConverter.ToUInt16(bytes[97..99]);
+		}
+    }
 }
