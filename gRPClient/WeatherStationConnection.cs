@@ -106,11 +106,7 @@ namespace gRPClient
                 crc = 0;
                 for (idx = 0; idx < 99; idx++)
                 {
-                    var left = (uint)(crc >> 8);
-                    var mid = (uint)response[idx + 1];
-                    var right = (uint)(crc << 8);
-                    var table = crc_table[left ^ mid];
-                    crc = (ushort)(table ^ right);
+                    crc = (ushort)(crc_table[(uint)(crc >> 8) ^ (uint)response[idx + 1]] ^ (uint)(crc << 8));
                 }
 
                 if (crc == 1)
