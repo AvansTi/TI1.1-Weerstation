@@ -1,9 +1,13 @@
-﻿using Grpc.Net.Client;
-using System;
-using gRPCClient;
+﻿using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Google.Protobuf.WellKnownTypes;
+using System.Linq;
+using AutoMapper;
+using AutoMapper.Execution;
+using Grpc.Net.Client;
+using gRPClient.Domain;
+using gRPClient.DomainServices;
+using gRPCServer;
 
 namespace gRPClient
 {
@@ -11,10 +15,11 @@ namespace gRPClient
     {
         static async Task Main(string[] args)
         {
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
+            var mapper = new Mapper(config);
             List<WeatherDataPoint> points = new List<WeatherDataPoint>();
             points.Add(
-                new WeatherDataPoint 
-                { 
+                new WeatherDataPoint(){ 
                     AvgWindSpeed = 15,
                     Barometer = 18,
                     BattLevel = 22,
@@ -32,9 +37,9 @@ namespace gRPClient
                     },
                     Sunrise = 3487,
                     Sunset = 3984,
-                    Timestamp = DateTimeOffset.Now.ToTimestamp(),
+                    Timestamp = DateTime.Now,
                     Ts = 21948,
-                    UVLevel = 214,
+                    UvLevel = 214,
                     WindDir = 123,
                     WindSpeed = 14,
                     XmitBatt = 144,
@@ -61,28 +66,33 @@ namespace gRPClient
                     },
                     Sunrise = 3487,
                     Sunset = 3984,
-                    Timestamp = DateTimeOffset.Now.ToTimestamp(),
+                    Timestamp = DateTime.Now,
                     Ts = 21948,
-                    UVLevel = 214,
+                    UvLevel = 214,
                     WindDir = 123,
                     WindSpeed = 14,
                     XmitBatt = 144,
 
                 }
             );
+            var listTest = mapper.Map<List<ProtoWeatherDataPoint>>(points);
+            Console.WriteLine(listTest);
+            var listTestback = mapper.Map<List<WeatherDataPoint>>(listTest);
+            Console.WriteLine(listTestback.First().Timestamp);
+            Console.WriteLine(points.First().Timestamp);
             Console.WriteLine("Druk op een toets om te starten");
             Console.ReadLine();
             using var channel = GrpcChannel.ForAddress("http://localhost:5000");
-            var client = new WeatherSaver.WeatherSaverClient(channel);
-            var reply = await client.SaveWeatherDataAsync(
-                new WeatherData
-                {
-                    WeatherDataPoints =
-                    {
-                        points
-                    }
-                });
-            Console.WriteLine(reply.Message);
+            // var client = new WeatherSaver.saveWeatherData(channel);
+            // var reply = await client.SaveWeatherDataAsync(
+            //     new ProtoWeatherData
+            //     {
+            //         WeatherDataPoints =
+            //         {
+            //             points
+            //         }
+            //     });
+            // Console.WriteLine(reply.Message);
             Console.WriteLine("Druk op een toets om te stoppen");
             Console.ReadLine();
         }
