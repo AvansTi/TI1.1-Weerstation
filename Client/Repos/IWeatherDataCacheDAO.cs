@@ -1,11 +1,11 @@
-﻿using gRPCClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Client.Domain;
 
-namespace gRPClient.Repo_s
+namespace Client.Repos
 {
     public interface IWeatherDataCacheDAO
     {

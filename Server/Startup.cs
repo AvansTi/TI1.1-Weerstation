@@ -1,4 +1,4 @@
-﻿using gRPCServer;
+﻿using Server;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -8,8 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Server.Services;
 
-namespace gRPCDemo
+namespace Server
 {
     public class Startup
     {
@@ -18,6 +19,7 @@ namespace gRPCDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
