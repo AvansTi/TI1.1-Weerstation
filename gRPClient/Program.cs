@@ -75,11 +75,12 @@ namespace gRPClient
 
                 }
             );
-            var listTest = mapper.Map<List<ProtoWeatherDataPoint>>(points);
-            Console.WriteLine(listTest);
-            var listTestback = mapper.Map<List<WeatherDataPoint>>(listTest);
-            Console.WriteLine(listTestback.First().Timestamp);
+            var protoWeatherData = new ProtoWeatherData();
+                protoWeatherData.WeatherDataPoints.AddRange(mapper.Map<List<ProtoWeatherDataPoint>>(points));
+
+            Console.WriteLine(protoWeatherData.WeatherDataPoints.First().Timestamp);
             Console.WriteLine(points.First().Timestamp);
+            
             Console.WriteLine("Druk op een toets om te starten");
             Console.ReadLine();
             using var channel = GrpcChannel.ForAddress("http://localhost:5000");

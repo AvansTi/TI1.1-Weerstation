@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
 using gRPClient.Domain;
 using gRPCServer;
