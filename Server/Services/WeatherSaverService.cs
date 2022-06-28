@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Server.Domain;
+using Server.Protos;
 
-namespace gRPCServer
+namespace Server.Services
 {
     public class WeatherSaverService : WeatherSaver.WeatherSaverBase
     {
@@ -13,9 +15,9 @@ namespace gRPCServer
         {
         }
 
-        public override Task<SavedReply> SaveWeatherData(WeatherData request, ServerCallContext context)
+        public override Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
         {
-            foreach(WeatherDataPoint datapoint in request.WeatherDataPoints){
+            foreach(ProtoWeatherDataPoint datapoint in request.WeatherDataPoints){
                 Console.WriteLine(datapoint.ToString());
             }
             return Task.FromResult(new SavedReply

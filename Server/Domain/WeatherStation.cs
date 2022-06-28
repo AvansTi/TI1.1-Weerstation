@@ -1,4 +1,4 @@
-﻿namespace gRPClient.Domain
+﻿namespace Server.Domain
 {
     using System;
 

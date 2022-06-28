@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "gRPCServer";
+option csharp_namespace = "Server.Protos";
 import "google/protobuf/timestamp.proto";
 package weatherRequest;
 

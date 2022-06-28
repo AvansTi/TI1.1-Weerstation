@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using gRPClient.Domain;
+using Client.Domain;
 
-namespace gRPClient.Repos
+namespace Client.Repos
 {
     public interface IWeatherCLientDAO
     {

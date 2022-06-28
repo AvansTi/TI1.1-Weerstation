@@ -1,17 +1,17 @@
 syntax = "proto3";
 
-option csharp_namespace = "gRPCServer";
+option csharp_namespace = "Client.Protos";
 import "google/protobuf/timestamp.proto";
 package weatherRequest;
 
 // The greeting service definition.
 service WeatherSaver {
   // Sends a greeting
-  rpc SaveWeatherData (WeatherData) returns (SavedReply);
+  rpc SaveWeatherData (ProtoWeatherData) returns (SavedReply);
 }
 
 // The request message containing the user's name.
-message WeatherDataPoint {
+message ProtoWeatherDataPoint {
   int32 avgWindSpeed = 1;
   int32 barometer = 2;
   int32 battLevel = 3;
@@ -21,7 +21,7 @@ message WeatherDataPoint {
   int32 outsideTemp = 7;
   int32 rainRate = 8;
   int32 solarRad = 9;
-  WeatherStation station = 10;
+  ProtoWeatherStation station = 10;
   int32 sunrise = 11;
   int32 sunset = 12;
   google.protobuf.Timestamp timestamp = 13;
@@ -32,15 +32,15 @@ message WeatherDataPoint {
   int32 xmitBatt = 18;
 }
 
-message WeatherStation{
+message ProtoWeatherStation{
 	int32 stationId = 1;
 	string name = 2;
 	string location = 3;
 	string description = 4;
 }
 
-message WeatherData{
-	repeated WeatherDataPoint WeatherDataPoints = 1;
+message ProtoWeatherData{
+	repeated ProtoWeatherDataPoint WeatherDataPoints = 1;
 }
 
 // The response message containing the greetings.

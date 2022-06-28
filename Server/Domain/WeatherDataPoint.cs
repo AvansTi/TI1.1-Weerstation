@@ -1,7 +1,6 @@
 ﻿using System;
-using gRPClient.Domain;
 
-namespace gRPClient.Domain
+namespace Server.Domain
 {
     public class WeatherDataPoint
     {

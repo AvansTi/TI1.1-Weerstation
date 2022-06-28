@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.Execution;
+using Client.Domain;
+using Client.DomainServices;
+using Client.Protos;
 using Grpc.Net.Client;
-using gRPClient.Domain;
-using gRPClient.DomainServices;
-using gRPCServer;
 
-namespace gRPClient
+namespace Client
 {
     class Program
     {
