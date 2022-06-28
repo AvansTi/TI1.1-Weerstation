@@ -2,19 +2,28 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" Version="3.15.5" />
-		<PackageReference Include="Grpc.Net.Client" Version="2.35.0" />
-		<PackageReference Include="Grpc.Tools" Version="2.34.0">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		<PackageReference Include="AutoMapper" Version="11.0.1" />
+		<PackageReference Include="Google.Protobuf" Version="3.21.2" />
+		<PackageReference Include="Grpc.AspNetCore" Version="2.47.0-pre1" />
+		<PackageReference Include="Grpc.Net.Client" Version="2.47.0-pre1" />
+		<PackageReference Include="Grpc.Tools" Version="2.47.0">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 	</ItemGroup>
   
 	<ItemGroup>
-		<Protobuf Include="Protos\weatherRequest.proto" GrpcServices="Client" />
-    </ItemGroup>
+	  <Protobuf Include="Protos\weatherRequest.proto">
+	    <GrpcServices>Server</GrpcServices>
+	    <Access>Public</Access>
+	    <ProtoCompile>True</ProtoCompile>
+	    <CompileOutputs>True</CompileOutputs>
+	    <OutputDir>obj\Debug\net6.0\</OutputDir>
+	    <Generator>MSBuild:Compile</Generator>
+	  </Protobuf>
+	</ItemGroup>
 
 </Project>
