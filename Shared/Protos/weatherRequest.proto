@@ -5,11 +5,11 @@ import "google/protobuf/timestamp.proto";
 package weatherRequest;
 
 // The greeting service definition.
-service WeatherSaver {
+service WeatherData {
   // Sends a greeting
   rpc SaveWeatherData (ProtoWeatherData) returns (SavedReply);
+  rpc GetWeatherData(WeatherDataRequest) returns (ProtoWeatherData);
 }
-
 // The request message containing the user's name.
 message ProtoWeatherDataPoint {
   int32 avgWindSpeed = 1;
@@ -46,4 +46,9 @@ message ProtoWeatherData{
 // The response message containing the greetings.
 message SavedReply {
   string message = 1;
+}
+
+message WeatherDataRequest{
+	string timeunit = 1;
+	int32 timeAmount = 2;
 }
