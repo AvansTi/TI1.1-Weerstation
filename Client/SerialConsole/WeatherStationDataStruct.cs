@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace gRPClient
+namespace Client.SerialConsole
 {
     public struct WeatherStationDataStruct
     {

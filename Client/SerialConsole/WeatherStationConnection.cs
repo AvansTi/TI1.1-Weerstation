@@ -4,9 +4,9 @@ using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using static gRPClient.Globals;
+using static Client.SerialConsole.Globals;
 
-namespace gRPClient
+namespace Client.SerialConsole
 {
     public class WeatherStationConnection
     {

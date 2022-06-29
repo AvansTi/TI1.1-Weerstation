@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Protobuf Include="Protos\weatherRequest.proto">
+        <Generator>MSBuild:Compile</Generator>
+      </Protobuf>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="11.0.1" />
+      <PackageReference Include="Google.Protobuf" Version="3.21.2" />
+      <PackageReference Include="Grpc.Core" Version="2.46.3" />
+      <PackageReference Include="Grpc.Core.Api" Version="2.47.0-pre1" />
+      <PackageReference Include="Grpc.Tools" Version="2.47.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+      <PackageReference Include="System.Memory" Version="4.5.5" />
+    </ItemGroup>
+
+</Project>

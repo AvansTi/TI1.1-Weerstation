@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shared.Domain;
+using Shared.DomainServices;
+using Shared.Protos;
 
-namespace gRPCServer
+namespace Server.Services
 {
     public class WeatherSaverService : WeatherSaver.WeatherSaverBase
     {
@@ -13,8 +16,11 @@ namespace gRPCServer
         {
         }
 
-        public override Task<SavedReply> SaveWeatherData(WeatherData request, ServerCallContext context)
+        public override Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
         {
+            foreach(ProtoWeatherDataPoint datapoint in request.WeatherDataPoints){
+                Console.WriteLine(datapoint.ToString());
+            }
             return Task.FromResult(new SavedReply
             {
                 Message = request.WeatherDataPoints.Count + " Data points are saved"

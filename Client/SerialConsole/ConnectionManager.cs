@@ -1,11 +1,10 @@
-﻿using gRPCClient;
-using gRPClient.Repo_s;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using static gRPClient.Globals;
+using Client.Repos;
+using static Client.SerialConsole.Globals;
 
-namespace gRPClient
+namespace Client.SerialConsole
 {
     public class ConnectionManager : IWeatherConsoleDAO
     {

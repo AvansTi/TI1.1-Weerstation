@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace gRPClient
+namespace Client.SerialConsole
 {
     public static class Globals
     {
