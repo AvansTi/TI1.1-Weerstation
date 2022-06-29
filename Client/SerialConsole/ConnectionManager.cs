@@ -9,8 +9,8 @@ namespace Client.SerialConsole
 {
     public class ConnectionManager : IWeatherConsoleDAO
     {
-        private string comport;
-        private int baudrate;
+        private readonly string comport;
+        private readonly int baudrate;
 
         /// <summary>
         /// TODO remove constructor as it is used as test code

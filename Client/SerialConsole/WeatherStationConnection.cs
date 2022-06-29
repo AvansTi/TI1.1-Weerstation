@@ -106,7 +106,7 @@ namespace Client.SerialConsole
                 crc = 0;
                 for (idx = 0; idx < 99; idx++)
                 {
-                    crc = (ushort)(crc_table[(uint)(crc >> 8) ^ (uint)response[idx + 1]] ^ (uint)(crc << 8));
+                    crc = (ushort)(_crcTable[(uint)(crc >> 8) ^ (uint)response[idx + 1]] ^ (uint)(crc << 8));
                 }
 
                 if (crc == 1)
@@ -119,7 +119,7 @@ namespace Client.SerialConsole
             if(OK == result)
             {
                 byte[] bytes = new byte[100];
-                //Remove unused acknowledment bit
+                //Remove unused acknowledgement bit
                 Buffer.BlockCopy(response, 1, bytes, 0, bytes.Length);
                 WeatherStationDataStruct data = new WeatherStationDataStruct();
                 data.Fill(bytes);
@@ -146,7 +146,7 @@ namespace Client.SerialConsole
         }
 
         // See chapter XII. CRC calculation/page 38 in VantageSerialProtocolDocs_v261
-        uint[] crc_table = {
+        private readonly uint[] _crcTable = {
             0x0, 0x1021, 0x2042, 0x3063, 0x4084, 0x50a5, 0x60c6, 0x70e7,
             0x8108, 0x9129, 0xa14a, 0xb16b, 0xc18c, 0xd1ad, 0xe1ce, 0xf1ef,
             0x1231, 0x210, 0x3273, 0x2252, 0x52b5, 0x4294, 0x72f7, 0x62d6,
