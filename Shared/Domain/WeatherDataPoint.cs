@@ -4,56 +4,56 @@ namespace Shared.Domain
 {
     public class WeatherDataPoint
     {
-        public int AvgWindSpeed { get; set; }
+        public short AvgWindSpeed { get; set; }
 
 
-        public int Barometer { get; set; }
+        public short Barometer { get; set; }
 
 
-        public int BattLevel { get; set; }
+        public short BattLevel { get; set; }
 
 
-        public int InsideHum { get; set; }
+        public short InsideHum { get; set; }
 
 
-        public int InsideTemp { get; set; }
+        public short InsideTemp { get; set; }
 
 
-        public int OutsideHum { get; set; }
+        public short OutsideHum { get; set; }
 
 
-        public int OutsideTemp { get; set; }
+        public short OutsideTemp { get; set; }
 
 
-        public int RainRate { get; set; }
+        public short RainRate { get; set; }
 
 
-        public int SolarRad { get; set; }
+        public short SolarRad { get; set; }
 
 
         public WeatherStation Station { get; set; }
 
 
-        public int Sunrise { get; set; }
+        public short Sunrise { get; set; }
 
 
-        public int Sunset { get; set; }
+        public short Sunset { get; set; }
 
 
         public DateTime Timestamp { get; set; }
 
 
-        public int Ts { get; set; }
+        public short Ts { get; set; }
 
-        public int UvLevel { get; set; }
-
-
-        public int WindSpeed { get; set; }
+        public short UvLevel { get; set; }
 
 
-        public int WindDir { get; set; }
+        public short WindSpeed { get; set; }
 
 
-        public int XmitBatt { get; set; }
+        public short WindDir { get; set; }
+
+
+        public short XmitBatt { get; set; }
     }
 }

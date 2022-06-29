@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using AutoMapper;
 using Client.Repos;
 using Shared.Domain;
+using Shared.SerialConsole;
 using static Client.SerialConsole.Globals;
 
 namespace Client.SerialConsole
@@ -27,10 +29,11 @@ namespace Client.SerialConsole
             comport = serialPorts[0];
             baudrate = 19200;
         }
-
-        public List<WeatherDataPoint> Get()
+        //Could take 1.5 to 2 minutes
+        public WeatherDataPoint Get(Mapper mapper)
         {
             WeatherStationConnection connection = new WeatherStationConnection();
+            WeatherDataPoint dataPoint =  null;
             int result = connection.OpenSerialPort(this.comport, this.baudrate);
 
             //Could not open the com port, return null
@@ -38,12 +41,18 @@ namespace Client.SerialConsole
                 result = connection.WakeUp();
 
             if(result == OK)
-                result = connection.GetRealTimeData();
+            {
+                WeatherStationDataStruct dataStruct = connection.GetRealTimeData();
+                if(dataStruct != null)
+                    dataPoint = mapper.Map<WeatherDataPoint>(dataStruct);
+            }
 
             result = connection.CloseSerialPort();
-
-            //TODO implement return value
-            return null;
+            
+            if(result == NOK)
+                Console.WriteLine("Could not close COM port!");
+            
+            return dataPoint;
         }
     }
 }

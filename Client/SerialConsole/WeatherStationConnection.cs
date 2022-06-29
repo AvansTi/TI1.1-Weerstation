@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using Shared.SerialConsole;
 using static Client.SerialConsole.Globals;
 
 namespace Client.SerialConsole
@@ -73,7 +74,7 @@ namespace Client.SerialConsole
             return result;
         }
 
-        public int GetRealTimeData()
+        public WeatherStationDataStruct GetRealTimeData()
         {
             int result = OK;
             char[] cmd = "LOOP 1\n".ToCharArray();
@@ -123,8 +124,10 @@ namespace Client.SerialConsole
                 Buffer.BlockCopy(response, 1, bytes, 0, bytes.Length);
                 WeatherStationDataStruct data = new WeatherStationDataStruct();
                 data.Fill(bytes);
+                return data;
             }
-            return result;
+
+            return null;
         }
 
         /// <summary>
