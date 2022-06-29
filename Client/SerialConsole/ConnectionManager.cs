@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Client.Repos;
+using Shared.Domain;
 using static Client.SerialConsole.Globals;
 
 namespace Client.SerialConsole
