@@ -84,16 +84,13 @@ namespace Client
             Console.WriteLine("Druk op een toets om te starten");
             Console.ReadLine();
             using var channel = GrpcChannel.ForAddress("http://localhost:5000");
-            // var client = new WeatherSaver.saveWeatherData(channel);
-            // var reply = await client.SaveWeatherDataAsync(
-            //     new ProtoWeatherData
-            //     {
-            //         WeatherDataPoints =
-            //         {
-            //             points
-            //         }
-            //     });
-            // Console.WriteLine(reply.Message);
+            var client = new WeatherData.WeatherDataClient(channel);
+            //var reply = await client.SaveWeatherDataAsync(protoWeatherData);
+            var data = client.GetWeatherData(new WeatherDataRequest { Timeunit = "day", TimeAmount = 6}); 
+            foreach(var point in data.WeatherDataPoints)
+            {
+                Console.WriteLine(point.WindSpeed);
+            }
             Console.WriteLine("Druk op een toets om te stoppen");
             Console.ReadLine();
         }
