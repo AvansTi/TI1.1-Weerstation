@@ -36,7 +36,7 @@ namespace Client.SerialConsole
         /// This function will try to wake the weather station 3 times.
         /// Every attempt will send a newline character '\n' or hex 0x0A
         /// and wait 1.2 seconds for a character response.
-        /// When an awnser is given (characters '\n' and '\r') the device is
+        /// When an answer is given (characters '\n' and '\r') the device is
         /// awake and standing by.
         /// </summary>
         /// <returns></returns>
@@ -145,7 +145,7 @@ namespace Client.SerialConsole
             }
         }
 
-        // Zie pagina 33 uit het document: VantageSerialProtocolDocs_v230.pdf
+        // See chapter XII. CRC calculation/page 38 in VantageSerialProtocolDocs_v261
         uint[] crc_table = {
             0x0, 0x1021, 0x2042, 0x3063, 0x4084, 0x50a5, 0x60c6, 0x70e7,
             0x8108, 0x9129, 0xa14a, 0xb16b, 0xc18c, 0xd1ad, 0xe1ce, 0xf1ef,
