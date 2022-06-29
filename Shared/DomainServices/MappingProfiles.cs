@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Client.Domain;
-using Client.Protos;
 using Google.Protobuf.Collections;
 using Google.Protobuf.WellKnownTypes;
+using Shared;
+using Shared.Protos;
+using Shared.Domain;
 
-namespace Client.DomainServices
+namespace Shared.DomainServices
 {
     using AutoMapper;
     public class MappingProfiles : Profile

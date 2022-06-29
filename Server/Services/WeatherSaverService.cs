@@ -4,8 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Server.Domain;
-using Server.Protos;
+using Shared.Domain;
+using Shared.DomainServices;
+using Shared.Protos;
 
 namespace Server.Services
 {

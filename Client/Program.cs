@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using AutoMapper.Execution;
-using Client.Domain;
-using Client.DomainServices;
-using Client.Protos;
+using Shared.Domain;
+using Shared.DomainServices;
+using Shared.Protos;
 using Grpc.Net.Client;
 
 namespace Client

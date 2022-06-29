@@ -17,14 +17,7 @@
 	</ItemGroup>
   
 	<ItemGroup>
-	  <Protobuf Include="Protos\weatherRequest.proto">
-	    <GrpcServices>Server</GrpcServices>
-	    <Access>Public</Access>
-	    <ProtoCompile>True</ProtoCompile>
-	    <CompileOutputs>True</CompileOutputs>
-	    <OutputDir>obj\Debug\net6.0\</OutputDir>
-	    <Generator>MSBuild:Compile</Generator>
-	  </Protobuf>
+	  <ProjectReference Include="..\Shared\Shared.csproj" />
 	</ItemGroup>
 
 </Project>

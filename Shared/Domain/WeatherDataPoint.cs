@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Server.Domain
+namespace Shared.Domain
 {
     public class WeatherDataPoint
     {

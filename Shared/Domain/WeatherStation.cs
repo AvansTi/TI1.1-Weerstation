@@ -1,4 +1,4 @@
-﻿namespace Server.Domain
+﻿namespace Shared.Domain
 {
     using System;
 
