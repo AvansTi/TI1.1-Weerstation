@@ -21,8 +21,6 @@ services:
         # You can use whatever password you like
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      ports: 
-        - 3306:3306
       expose:
       # Opens port 3306 on the container
         - '3306'
