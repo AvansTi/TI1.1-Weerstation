@@ -6,14 +6,19 @@ namespace Client.Repos;
 
 public class InMemoryWeatherDataRequestCache : IWeatherDataRequestCache
 {
-    private List<ProtoWeatherData> cache;
-    public void Add(ProtoWeatherData weatherdata)
+    private List<ProtoWeatherDataPoint> cache;
+    public void Add(ProtoWeatherDataPoint weatherdata)
     {
         cache.Add(weatherdata);
     }
 
-    public List<ProtoWeatherData> GetAll()
+    public IEnumerable<ProtoWeatherDataPoint> GetAll()
     {
         return cache;
+    }
+
+    public int GetCount()
+    {
+        return cache.Count;
     }
 }

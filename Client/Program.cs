@@ -3,9 +3,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Timers;
 using AutoMapper;
 using AutoMapper.Execution;
+using Client.Domain;
 using Client.SerialConsole;
+using Google.Protobuf.Collections;
 using Shared.Domain;
 using Shared.DomainServices;
 using Shared.Protos;
@@ -16,12 +19,20 @@ namespace Client
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
-            var mapper = new Mapper(config);
             // structDemo(mapper);
             //grpcDemo(mapper);
+            Requester requester = new Requester();
+            var myTimer = new System.Timers.Timer(5000);
+            // Tell the timer what to do when it elapses
+            myTimer.Elapsed += ( sender, e ) => requester.repeatingTask();
+            myTimer.AutoReset = true;
+            // And start it        
+            // myTimer.Enabled = true;
+            GC.KeepAlive(myTimer);
+            myTimer.Start();
+            Console.ReadLine();
         }
 
         public static void structDemo(Mapper mapper)
