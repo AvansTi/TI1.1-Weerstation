@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Shared.Domain;
 
-namespace Client.Repos
+namespace Client.Domain
 {
     public interface IWeatherCLientDAO
     {

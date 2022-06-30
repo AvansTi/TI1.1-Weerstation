@@ -22,7 +22,6 @@ namespace Client
             var mapper = new Mapper(config);
             // structDemo(mapper);
             //grpcDemo(mapper);
-            
         }
 
         public static void structDemo(Mapper mapper)

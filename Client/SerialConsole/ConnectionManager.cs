@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
-using Client.Repos;
+using Client.Domain;
 using Shared.Domain;
 using Shared.SerialConsole;
 using static Client.SerialConsole.Globals;

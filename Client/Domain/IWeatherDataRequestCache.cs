@@ -10,7 +10,6 @@ namespace Client.Domain
 {
     public interface IWeatherDataRequestCache
     {
-        void Add(List<ProtoWeatherData> weatherdata);
         List<ProtoWeatherData> GetAll();
         void Add(ProtoWeatherData weatherData);
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Shared.Domain;
 
-namespace Client.Repos
+namespace Client.Domain
 {
     public interface IWeatherConsoleDAO
     {
