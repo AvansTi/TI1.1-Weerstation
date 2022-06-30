@@ -1,0 +1,42 @@
+services:
+  server:
+    container_name: server
+    build: 
+      context: .
+      dockerfile: Dockerfile.server
+    ports: 
+      - "80:80"
+    environment:
+      ENV_VARIABLE: ENV_VARIABLE
+    depends_on:
+      - db
+  db:
+      image: mysql
+      restart: always
+      env_file:
+        - .env
+      environment:
+        MYSQL_DATABASE: 'tiweerstationdb'
+        MYSQL_USER: ${MYSQL_USER}
+        # You can use whatever password you like
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ports: 
+        - 3306:3306
+      expose:
+      # Opens port 3306 on the container
+        - '3306'
+      volumes:
+        - my-db:/var/lib/mysql
+  client:
+    container_name: client
+    build: 
+      context: .
+      dockerfile: Dockerfile.client
+    ports: 
+      - "80:80"
+    environment:
+      ENV_VARIABLE: ENV_VARIABLE
+  # Names our volume
+volumes:
+  my-db:
