@@ -7,15 +7,13 @@ EXPOSE 5001
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY *.csproj ./
-RUN dotnet restore "Server.csproj"
-RUN dotnet restore "Shared.csproj"
-COPY . .
+COPY *.csproj .
+RUN dotnet restore "Server/Server.csproj"
 
-RUN dotnet build -c Release -o /app/build
+RUN dotnet build "Server/Server.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Server.csproj" -c Release -o /app/publish
+RUN dotnet publish "Server/Server.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
