@@ -1,6 +1,7 @@
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,18 +26,29 @@ namespace Server.Services
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
             var mapper = new Mapper(config);
-
-            List<WeatherDataPoint> weatherDataMapped = mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
-            _dbContext.AddRange(weatherDataMapped);
-            _dbContext.SaveChanges();
-
+            try
+            {
+                List<WeatherDataPoint> weatherDataMapped =
+                    mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
+                _dbContext.AddRange(weatherDataMapped);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                return Task.FromResult(new SavedReply
+                {
+                    Message = "An error occurred",
+                    StatusCode = 500
+                });
+            }
             return Task.FromResult(new SavedReply
             {
-                Message = request.WeatherDataPoints.Count + " Data points are saved"
+                Message = request.WeatherDataPoints.Count + " Data points are saved",
+                StatusCode = 200
             });
         }
 
-        public override Task<ProtoWeatherData> GetWeatherData(WeatherDataRequest request, ServerCallContext context)
+        public override Task<ProtoWeatherDataResponse> GetWeatherData(WeatherDataRequest request, ServerCallContext context)
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
             var mapper = new Mapper(config);
@@ -56,14 +68,27 @@ namespace Server.Services
                     break;
             }
 
-            var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
-                                    where weatherdatapoint.Timestamp > dateTime
-                                    select weatherdatapoint);
+            List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
+            try
+            {
+                var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
+                    where weatherdatapoint.Timestamp > dateTime
+                    select weatherdatapoint);
+                protoWeatherDataPoints = mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints);
+            }
+            catch(Exception e)
+            {
+                Console.Error.WriteLine("Error with lookup or mapping of request: ",e);
+                return Task.FromResult(new ProtoWeatherDataResponse
+                {
+                    StatusCode = 500
+                });
+            }
+            ProtoWeatherDataResponse protoWeatherDataResponse = new ProtoWeatherDataResponse();
+            protoWeatherDataResponse.WeatherDataPoints.AddRange(protoWeatherDataPoints);
+            protoWeatherDataResponse.StatusCode = 200;
 
-            ProtoWeatherData protoWeatherData = new ProtoWeatherData();
-            protoWeatherData.WeatherDataPoints.AddRange(mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
-
-            return Task.FromResult(protoWeatherData);
+            return Task.FromResult(protoWeatherDataResponse);
         }
     }
 }

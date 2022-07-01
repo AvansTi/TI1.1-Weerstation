@@ -13,5 +13,6 @@ namespace Client.Domain
         IEnumerable<ProtoWeatherDataPoint> GetAll();
         void Add(ProtoWeatherDataPoint weatherData);
         int GetCount();
+        void Clear();
     }
 }

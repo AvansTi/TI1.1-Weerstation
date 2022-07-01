@@ -21,4 +21,9 @@ public class InMemoryWeatherDataRequestCache : IWeatherDataRequestCache
     {
         return cache.Count;
     }
+
+    public void Clear()
+    {
+        cache.Clear();
+    }
 }

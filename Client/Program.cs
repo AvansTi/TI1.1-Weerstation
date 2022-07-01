@@ -26,7 +26,7 @@ namespace Client
             Requester requester = new Requester();
             var myTimer = new System.Timers.Timer(5000);
             // Tell the timer what to do when it elapses
-            myTimer.Elapsed += ( sender, e ) => requester.repeatingTask();
+            myTimer.Elapsed += ( sender, e ) => requester.ReadConsoleAndSendRequest();
             myTimer.AutoReset = true;
             // And start it        
             // myTimer.Enabled = true;
