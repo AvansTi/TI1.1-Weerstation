@@ -6,8 +6,14 @@ services:
       dockerfile: Dockerfile.server
     ports: 
       - "80:80"
+    env_file:
+      - .env
     environment:
-      ENV_VARIABLE: ENV_VARIABLE
+        MYSQL_DATABASE: 'tiweerstationdb'
+        MYSQL_USER: ${MYSQL_USER}
+        # You can use whatever password you like
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}=value
     depends_on:
       - db
   db:
@@ -25,7 +31,7 @@ services:
       # Opens port 3306 on the container
         - '3306'
       volumes:
-        - my-db:/var/lib/mysql
+        - weerstation-db:/var/lib/mysql
   client:
     container_name: client
     build: 
@@ -33,8 +39,10 @@ services:
       dockerfile: Dockerfile.client
     ports: 
       - "80:80"
+    env_file:
+        - .env
     environment:
-      ENV_VARIABLE: ENV_VARIABLE
+      SERVER_URL: ${SERVER_URL}
   # Names our volume
 volumes:
-  my-db:
+  weerstation-db:
