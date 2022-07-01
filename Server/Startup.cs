@@ -34,10 +34,9 @@ namespace Server
             //server=db; port=3306; database=tiweerstationdb; uid=weerstation-user; pwd=1234
             string mySqlConnectionStr = $"server={Configuration.GetConnectionString("DefaultUrl")}; " +
                                         $"port={Configuration.GetConnectionString("DefaultPort")}; " +
-                                        $"database={Configuration.GetConnectionString("DefaultDatabase")}; " +
+                                        $"database={Environment.GetEnvironmentVariable("MYSQL_DATABASE")}; " +
                                         $"uid={Environment.GetEnvironmentVariable("MYSQL_USER")}; " +
                                         $"pwd={Environment.GetEnvironmentVariable("MYSQL_PASSWORD")}";
-                
             services.AddDbContext<WeatherStationContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
             services.AddGrpc();
             services.AddAutoMapper(typeof(Startup));

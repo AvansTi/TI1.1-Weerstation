@@ -15,7 +15,7 @@ namespace Client;
 
 public class Requester
 {
-    private const string ServerAddress = "http://localhost:5000";
+    public static readonly string ServerAddress = Environment.GetEnvironmentVariable("SERVER_URL");
     private readonly Mapper _mapper;
     private readonly IWeatherDataRequestCache _weatherDataRequestCache;
     private readonly IWeatherConsoleDAO _weatherConsole;

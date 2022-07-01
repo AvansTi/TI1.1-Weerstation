@@ -22,9 +22,11 @@ namespace Client
         static void Main(string[] args)
         {
             // structDemo(mapper);
-            //grpcDemo(mapper);
+            // var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
+            // var mapper = new Mapper(config);
+            // grpcDemo(mapper);
             Requester requester = new Requester();
-            var myTimer = new System.Timers.Timer(5000);
+            var myTimer = new System.Timers.Timer(2000);
             // Tell the timer what to do when it elapses
             myTimer.Elapsed += ( sender, e ) => requester.ReadConsoleAndSendRequest();
             myTimer.AutoReset = true;
@@ -129,19 +131,14 @@ namespace Client
 
             Console.WriteLine(protoWeatherData.WeatherDataPoints.First().Timestamp);
             Console.WriteLine(points.First().Timestamp);
-            
-            Console.WriteLine("Druk op een toets om te starten");
-            Console.ReadLine();
-            using var channel = GrpcChannel.ForAddress("http://localhost:5000");
+            using var channel = GrpcChannel.ForAddress("http://127.0.0.1:80");
             var client = new WeatherData.WeatherDataClient(channel);
-            //var reply = await client.SaveWeatherDataAsync(protoWeatherData);
+            var reply = client.SaveWeatherDataAsync(protoWeatherData).ResponseAsync.Result;
             var data = client.GetWeatherData(new WeatherDataRequest { Timeunit = "day", TimeAmount = 6}); 
             foreach(var point in data.WeatherDataPoints)
             {
                 Console.WriteLine(point.WindSpeed);
             }
-            Console.WriteLine("Druk op een toets om te stoppen");
-            Console.ReadLine();
         }
     }
 }
