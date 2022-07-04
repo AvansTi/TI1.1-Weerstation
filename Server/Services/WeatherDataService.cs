@@ -17,24 +17,28 @@ namespace Server.Services
 {
     public class WeatherDataService : WeatherData.WeatherDataBase
     {
-        private readonly IWeatherStationDAO _weatherStationDao;
+        private readonly IWeatherStationRepo _weatherStationRepo;
         private readonly IMapper _mapper;
-        public WeatherDataService(IWeatherStationDAO weatherStationDao,IMapper mapper)
+        private readonly ILogger _logger;
+        public WeatherDataService(IWeatherStationRepo weatherStationRepo,IMapper mapper,ILogger logger)
         {
-            _weatherStationDao = weatherStationDao;
+            _weatherStationRepo = weatherStationRepo;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public override async Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
         {
             try
             {
+                //Map the proto class to domain class and add them to th repo
                 List<WeatherDataPoint> weatherDataMapped =
                     _mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
-                await _weatherStationDao.AddRangeAsync(weatherDataMapped);
+                await _weatherStationRepo.AddRangeAsync(weatherDataMapped);
             }
             catch (Exception e)
             {
+                _logger.LogError("An error occurred: {StackTrace}",e.StackTrace);
                 return new SavedReply
                 {
                     Message = "An error occurred",
@@ -71,14 +75,15 @@ namespace Server.Services
             List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
             try
             {
-                var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
+                var weatherDatapoints = (from weatherdatapoint in _weatherStationRepo.GetQueryable()
                     where weatherdatapoint.Timestamp > dateTime
                     select weatherdatapoint);
+                //Map response to proto classes
                 protoWeatherDataPoints = _mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints);
             }
             catch(Exception e)
             {
-                Console.Error.WriteLine("Error with lookup or mapping of request: ",e);
+                _logger.LogError("Error with lookup or mapping of request: {StackTraces}",e.StackTrace);
                 return Task.FromResult(new ProtoWeatherDataResponse
                 {
                     StatusCode = 500
@@ -97,7 +102,7 @@ namespace Server.Services
             List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
             try
             {
-                var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
+                var weatherDatapoints = (from weatherdatapoint in _weatherStationRepo.GetQueryable()
                     where timeStart < weatherdatapoint.Timestamp.Date
                     && weatherdatapoint.Timestamp.Date < timeEnd.Date 
                     select weatherdatapoint);
@@ -105,7 +110,7 @@ namespace Server.Services
             }
             catch(Exception e)
             {
-                Console.Error.WriteLine("Error with lookup or mapping of request: ",e);
+                _logger.LogError("Error with lookup or mapping of request: {StackTraces}",e.StackTrace);
                 return Task.FromResult(new ProtoWeatherDataResponse
                 {
                     StatusCode = 500
@@ -119,7 +124,7 @@ namespace Server.Services
         }
         public override Task<ProtoWeatherDataResponse> GetWeatherDataByStation(ProtoWeatherStation request, ServerCallContext context)
         {
-            var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
+            var weatherDatapoints = (from weatherdatapoint in _weatherStationRepo.GetQueryable()
                 where weatherdatapoint.Station.StationId == request.StationId
                 select weatherdatapoint);
 

@@ -2,7 +2,7 @@
 
 namespace Server.DomainServices;
 
-public interface IWeatherStationDAO : IRepo<WeatherDataPoint>
+public interface IWeatherStationRepo : IRepo<WeatherDataPoint>
 {
     
 }

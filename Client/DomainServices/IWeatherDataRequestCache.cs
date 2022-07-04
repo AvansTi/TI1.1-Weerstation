@@ -8,6 +8,9 @@ using Shared.Protos;
 
 namespace Client.DomainServices
 {
+    /// <summary>
+    /// A data cache for ProtoWeatherDataPoint classes
+    /// </summary>
     public interface IWeatherDataRequestCache
     {
         IEnumerable<ProtoWeatherDataPoint> GetAll();

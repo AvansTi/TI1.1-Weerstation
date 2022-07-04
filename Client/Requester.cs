@@ -43,17 +43,19 @@ public class Requester
             Console.Error.WriteLine("Something went wrong while reading the console! Aborting method.");
             return;
         }
+        //Set up grpc connection
         var client = new WeatherData.WeatherDataClient(_grpcChannel);
         var protoWeatherData = new ProtoWeatherData();
-        var weatherRequestCacheCount = _weatherDataRequestCache.GetCount();
+
         //Adds the retrieved weatherdatapoint to the weatherdatapoints "list"
         protoWeatherData.WeatherDataPoints.Add(_mapper.Map<ProtoWeatherDataPoint>(weatherDataPoint));
-        //If there is anything in the cache, it adds those as well.
-        if (weatherRequestCacheCount != 0)
+
+        //If there is something in the cache, add it to the request
+        if (_weatherDataRequestCache.GetCount() != 0)
         {
             protoWeatherData.WeatherDataPoints.AddRange(_weatherDataRequestCache.GetAll());
         }
-        //Try to send the weatherdatapoints, if it fails, add the retrieved datapoint to the cache and wait for the next method call
+        //Try to send the weatherDataPoints, if it fails, add the retrieved datapoint to the cache and wait for the next method call
         try
         {
             var reply = client.SaveWeatherDataAsync(protoWeatherData).ResponseAsync.Result;

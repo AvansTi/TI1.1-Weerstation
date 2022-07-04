@@ -30,6 +30,12 @@ namespace Client.SerialConsole
             baudrate = 19200;
         }
         //Could take 1.5 to 2 minutes
+        /// <summary>
+        /// Requests a WeatherDataPoint from a weather console connected to a usb/serialport
+        /// <remarks>Could take 1.5 to 2 minutes</remarks>
+        /// </summary>
+        /// <param name="a">Automapper class to map from raw data to domainobject</param>
+        /// <returns></returns>
         public WeatherDataPoint Get(Mapper mapper)
         {
             WeatherStationConnection connection = new WeatherStationConnection();

@@ -7,7 +7,7 @@ using Shared.Domain;
 
 namespace gRPCServer.Infrastructure;
 
-public class DbWeatherdataRepo : IWeatherStationDAO
+public class DbWeatherdataRepo : IWeatherStationRepo
 {
     protected WeatherStationContext _context { get; set; }
 
