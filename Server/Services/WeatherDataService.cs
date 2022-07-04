@@ -48,8 +48,11 @@ namespace Server.Services
                 case "month":
                     dateTime = dateTime.AddMonths(0 - request.TimeAmount);
                     break;
-                default:
+                case "day":
                     dateTime = dateTime.AddDays(0 - request.TimeAmount);
+                    break;
+                default:
+                    dateTime = dateTime.AddHours(0 - request.TimeAmount);
                     break;
             }
 
