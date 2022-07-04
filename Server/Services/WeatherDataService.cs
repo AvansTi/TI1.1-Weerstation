@@ -16,17 +16,17 @@ namespace Server.Services
     public class WeatherDataService : WeatherData.WeatherDataBase
     {
         private readonly WeatherStationContext _dbContext;
+        private Mapper _mapper;
         public WeatherDataService(WeatherStationContext dbContext)
         {
+            _mapper = new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>()));
             _dbContext = dbContext;
         }
 
         public override Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
-            var mapper = new Mapper(config);
-
-            List<WeatherDataPoint> weatherDataMapped = mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
+           
+            List<WeatherDataPoint> weatherDataMapped = _mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
             _dbContext.AddRange(weatherDataMapped);
             _dbContext.SaveChanges();
 
@@ -38,21 +38,18 @@ namespace Server.Services
 
         public override Task<ProtoWeatherData> GetWeatherData(WeatherDataRequest request, ServerCallContext context)
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
-            var mapper = new Mapper(config);
-
             DateTime dateTime = DateTime.Today;
 
             switch (request.Timeunit)
             {
                 case "year":
-                    dateTime.AddYears(0 - request.TimeAmount);
+                    dateTime = dateTime.AddYears(0 - request.TimeAmount);
                     break;
                 case "month":
-                    dateTime.AddMonths(0 - request.TimeAmount);
+                    dateTime = dateTime.AddMonths(0 - request.TimeAmount);
                     break;
                 default:
-                    dateTime.AddDays(0 - request.TimeAmount);
+                    dateTime = dateTime.AddDays(0 - request.TimeAmount);
                     break;
             }
 
@@ -61,7 +58,44 @@ namespace Server.Services
                                     select weatherdatapoint);
 
             ProtoWeatherData protoWeatherData = new ProtoWeatherData();
-            protoWeatherData.WeatherDataPoints.AddRange(mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
+            protoWeatherData.WeatherDataPoints.AddRange(_mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
+
+            return Task.FromResult(protoWeatherData);
+        }
+
+        public override Task<ProtoWeatherData> GetLastDataPoint(WeatherDataRequest request, ServerCallContext context)
+        {
+            List<WeatherDataPoint> weatherDatapoints = new List<WeatherDataPoint>();
+          
+            var weatherDatapoint = _dbContext.WeatherDataPoint.First();
+            weatherDatapoints.Add(weatherDatapoint);
+
+            ProtoWeatherData protoWeatherData = new ProtoWeatherData();
+            protoWeatherData.WeatherDataPoints.AddRange(_mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
+
+            return Task.FromResult(protoWeatherData);
+        }
+
+        public override Task<ProtoWeatherData> GetWeatherDataBetween(TimeBlock request, ServerCallContext context)
+        {
+            var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
+                                     where weatherdatapoint.Timestamp > request.TimeStart.ToDateTime() && weatherdatapoint.Timestamp < request.TimeEnd.ToDateTime()
+                                     select weatherdatapoint);
+
+            ProtoWeatherData protoWeatherData = new ProtoWeatherData();
+            protoWeatherData.WeatherDataPoints.AddRange(_mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
+
+            return Task.FromResult(protoWeatherData);
+        }
+
+        public override Task<ProtoWeatherData> GetWeatherDataByStation(ProtoWeatherStation request, ServerCallContext context)
+        {
+            var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
+                                     where weatherdatapoint.Station.StationId == request.StationId
+                                     select weatherdatapoint);
+
+            ProtoWeatherData protoWeatherData = new ProtoWeatherData();
+            protoWeatherData.WeatherDataPoints.AddRange(_mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
 
             return Task.FromResult(protoWeatherData);
         }
