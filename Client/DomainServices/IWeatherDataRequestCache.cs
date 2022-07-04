@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Shared.Domain;
 using Shared.Protos;
 
-namespace Client.Domain
+namespace Client.DomainServices
 {
     public interface IWeatherDataRequestCache
     {

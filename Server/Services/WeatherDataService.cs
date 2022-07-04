@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shared.Domain;
-using Shared.DomainServices;
+using Shared.ApplicationServices;
 using Shared.Protos;
 using gRPCServer.Infrastructure;
 using AutoMapper;

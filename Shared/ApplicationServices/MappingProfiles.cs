@@ -9,7 +9,7 @@ using Shared.Domain;
 using Shared.SerialConsole;
 
 
-namespace Shared.DomainServices
+namespace Shared.ApplicationServices
 {
     using AutoMapper;
 

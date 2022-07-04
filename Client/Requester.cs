@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using AutoMapper;
-using Client.Domain;
-using Client.Repos;
+using Client.DomainServices;
+using Client.Infrastructure;
 using Client.SerialConsole;
 using Grpc.Net.Client;
 using Shared.Domain;
-using Shared.DomainServices;
+using Shared.ApplicationServices;
 using Shared.Protos;
 
 namespace Client;
