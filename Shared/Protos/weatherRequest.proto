@@ -9,6 +9,9 @@ service WeatherData {
   // Sends a greeting
   rpc SaveWeatherData (ProtoWeatherData) returns (SavedReply);
   rpc GetWeatherData(WeatherDataRequest) returns (ProtoWeatherData);
+  rpc GetLastDataPoint(WeatherDataRequest) returns (ProtoWeatherData);
+  rpc GetWeatherDataBetween(TimeBlock) returns (ProtoWeatherData);
+  rpc GetWeatherDataByStation(ProtoWeatherStation) returns(ProtoWeatherData);
 }
 // The request message containing the user's name.
 message ProtoWeatherDataPoint {
@@ -51,4 +54,10 @@ message SavedReply {
 message WeatherDataRequest{
 	string timeunit = 1;
 	int32 timeAmount = 2;
+}
+
+message TimeBlock{
+  google.protobuf.Timestamp timeStart = 1;
+  google.protobuf.Timestamp timeEnd = 2;
+
 }
