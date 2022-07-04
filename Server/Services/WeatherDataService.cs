@@ -8,44 +8,44 @@ using System.Threading.Tasks;
 using Shared.Domain;
 using Shared.DomainServices;
 using Shared.Protos;
-using gRPCServer.Repos;
+using gRPCServer.Infrastructure;
 using AutoMapper;
 using AutoMapper.Execution;
+using Server.DomainServices;
 
 namespace Server.Services
 {
     public class WeatherDataService : WeatherData.WeatherDataBase
     {
-        private readonly WeatherStationContext _dbContext;
+        private readonly IWeatherStationDAO _weatherStationDao;
         private readonly IMapper _mapper;
-        public WeatherDataService(WeatherStationContext dbContext,IMapper mapper)
+        public WeatherDataService(IWeatherStationDAO weatherStationDao,IMapper mapper)
         {
-            _dbContext = dbContext;
+            _weatherStationDao = weatherStationDao;
             _mapper = mapper;
         }
 
-        public override Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
+        public override async Task<SavedReply> SaveWeatherData(ProtoWeatherData request, ServerCallContext context)
         {
             try
             {
                 List<WeatherDataPoint> weatherDataMapped =
                     _mapper.Map<List<WeatherDataPoint>>(request.WeatherDataPoints);
-                _dbContext.AddRange(weatherDataMapped);
-                _dbContext.SaveChanges();
+                await _weatherStationDao.AddRangeAsync(weatherDataMapped);
             }
             catch (Exception e)
             {
-                return Task.FromResult(new SavedReply
+                return new SavedReply
                 {
                     Message = "An error occurred",
                     StatusCode = 500
-                });
+                };
             }
-            return Task.FromResult(new SavedReply
+            return new SavedReply
             {
                 Message = request.WeatherDataPoints.Count + " Data points are saved",
                 StatusCode = 200
-            });
+            };
         }
 
         public override Task<ProtoWeatherDataResponse> GetWeatherData(WeatherDataRequest request, ServerCallContext context)
@@ -67,7 +67,7 @@ namespace Server.Services
             List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
             try
             {
-                var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
+                var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
                     where weatherdatapoint.Timestamp > dateTime
                     select weatherdatapoint);
                 protoWeatherDataPoints = _mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints);
@@ -93,7 +93,7 @@ namespace Server.Services
             List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
             try
             {
-                var weatherDatapoints = (from weatherdatapoint in _dbContext.WeatherDataPoint
+                var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
                     where dateFrom < weatherdatapoint.Timestamp.Date
                     && weatherdatapoint.Timestamp.Date < dateUpTo.Date 
                     select weatherdatapoint);

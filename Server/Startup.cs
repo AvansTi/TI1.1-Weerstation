@@ -1,6 +1,6 @@
 ﻿using Shared;
 using gRPCServer;
-using gRPCServer.Repos;
+using gRPCServer.Infrastructure;
 using Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
