@@ -48,8 +48,11 @@ namespace Server.Services
                 case "month":
                     dateTime = dateTime.AddMonths(0 - request.TimeAmount);
                     break;
-                default:
+                case "day":
                     dateTime = dateTime.AddDays(0 - request.TimeAmount);
+                    break;
+                default:
+                    dateTime = dateTime.AddHours(0 - request.TimeAmount);
                     break;
             }
 
@@ -66,8 +69,8 @@ namespace Server.Services
         public override Task<ProtoWeatherData> GetLastDataPoint(WeatherDataRequest request, ServerCallContext context)
         {
             List<WeatherDataPoint> weatherDatapoints = new List<WeatherDataPoint>();
-          
-            var weatherDatapoint = _dbContext.WeatherDataPoint.First();
+
+            var weatherDatapoint = _dbContext.WeatherDataPoint.OrderByDescending(x => x.Timestamp).First();
             weatherDatapoints.Add(weatherDatapoint);
 
             ProtoWeatherData protoWeatherData = new ProtoWeatherData();
