@@ -66,8 +66,8 @@ namespace Server.Services
         public override Task<ProtoWeatherData> GetLastDataPoint(WeatherDataRequest request, ServerCallContext context)
         {
             List<WeatherDataPoint> weatherDatapoints = new List<WeatherDataPoint>();
-          
-            var weatherDatapoint = _dbContext.WeatherDataPoint.First();
+
+            var weatherDatapoint = _dbContext.WeatherDataPoint.OrderByDescending(x => x.Timestamp).First();
             weatherDatapoints.Add(weatherDatapoint);
 
             ProtoWeatherData protoWeatherData = new ProtoWeatherData();
