@@ -13,7 +13,7 @@ services:
         MYSQL_USER: ${MYSQL_USER}
         # You can use whatever password you like
         MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}=value
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     depends_on:
       - db
   db:
