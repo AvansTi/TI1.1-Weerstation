@@ -134,7 +134,7 @@ namespace Client
             using var channel = GrpcChannel.ForAddress("http://127.0.0.1:80");
             var client = new WeatherData.WeatherDataClient(channel);
             var reply = client.SaveWeatherDataAsync(protoWeatherData).ResponseAsync.Result;
-            var data = client.GetWeatherData(new WeatherDataRequest { TimeUnit = WeatherDataRequest.Types.TIME_UNIT.Day, TimeAmount = 6}); 
+            var data = client.GetWeatherData(new WeatherDataRequest { Timeunit = "day", TimeAmount = 6}); 
             foreach(var point in data.WeatherDataPoints)
             {
                 Console.WriteLine(point.WindSpeed);

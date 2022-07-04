@@ -9,7 +9,9 @@ service WeatherData {
   // Sends weather data to server to be saved
   rpc SaveWeatherData (ProtoWeatherData) returns (SavedReply);
   rpc GetWeatherData(WeatherDataRequest) returns (ProtoWeatherDataResponse);
-  rpc GetWeatherDataBetween(WeatherDataBetweenDatesRequest) returns (ProtoWeatherDataResponse);
+  rpc GetLastDataPoint(WeatherDataRequest) returns (ProtoWeatherDataResponse);
+  rpc GetWeatherDataBetween(TimeBlock) returns (ProtoWeatherDataResponse);
+  rpc GetWeatherDataByStation(ProtoWeatherStation) returns(ProtoWeatherDataResponse);
 }
 // Request containing weatherdata of a single point in time
 message ProtoWeatherDataPoint {
@@ -55,15 +57,12 @@ message SavedReply {
 }
 
 message WeatherDataRequest{
-  enum TIME_UNIT{
-    Year = 0;
-    Month = 1;
-    Day = 2;
-  }
-  TIME_UNIT timeUnit = 3;
-	int32 timeAmount = 4;
+	string timeunit = 1;
+	int32 timeAmount = 2;
 }
-message WeatherDataBetweenDatesRequest{
-  google.protobuf.Timestamp from = 1;
-  google.protobuf.Timestamp upTo = 2;
+
+message TimeBlock{
+  google.protobuf.Timestamp timeStart = 1;
+  google.protobuf.Timestamp timeEnd = 2;
+
 }

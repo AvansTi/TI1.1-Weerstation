@@ -51,16 +51,20 @@ namespace Server.Services
         public override Task<ProtoWeatherDataResponse> GetWeatherData(WeatherDataRequest request, ServerCallContext context)
         {
             DateTime dateTime = DateTime.Today;
-            switch (request.TimeUnit)
+
+            switch (request.Timeunit)
             {
-                case WeatherDataRequest.Types.TIME_UNIT.Year:
-                    dateTime.AddYears(0 - request.TimeAmount);
+                case "year":
+                    dateTime = dateTime.AddYears(0 - request.TimeAmount);
                     break;
-                case WeatherDataRequest.Types.TIME_UNIT.Month:
-                    dateTime.AddMonths(0 - request.TimeAmount);
+                case "month":
+                    dateTime = dateTime.AddMonths(0 - request.TimeAmount);
                     break;
-                case WeatherDataRequest.Types.TIME_UNIT.Day:
-                    dateTime.AddDays(0 - request.TimeAmount);
+                case "day":
+                    dateTime = dateTime.AddDays(0 - request.TimeAmount);
+                    break;
+                default:
+                    dateTime = dateTime.AddHours(0 - request.TimeAmount);
                     break;
             }
 
@@ -86,16 +90,16 @@ namespace Server.Services
 
             return Task.FromResult(protoWeatherDataResponse);
         }
-        public override Task<ProtoWeatherDataResponse> GetWeatherDataBetween(WeatherDataBetweenDatesRequest request, ServerCallContext context)
+        public override Task<ProtoWeatherDataResponse> GetWeatherDataBetween(TimeBlock request, ServerCallContext context)
         {
-            DateTime dateFrom = request.From.ToDateTime();
-            DateTime dateUpTo = request.UpTo.ToDateTime();
+            DateTime timeStart = request.TimeStart.ToDateTime();
+            DateTime timeEnd = request.TimeEnd.ToDateTime();
             List<ProtoWeatherDataPoint> protoWeatherDataPoints = null;
             try
             {
                 var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
-                    where dateFrom < weatherdatapoint.Timestamp.Date
-                    && weatherdatapoint.Timestamp.Date < dateUpTo.Date 
+                    where timeStart < weatherdatapoint.Timestamp.Date
+                    && weatherdatapoint.Timestamp.Date < timeEnd.Date 
                     select weatherdatapoint);
                 protoWeatherDataPoints = _mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints);
             }
@@ -110,6 +114,17 @@ namespace Server.Services
             ProtoWeatherDataResponse protoWeatherDataResponse = new ProtoWeatherDataResponse();
             protoWeatherDataResponse.WeatherDataPoints.AddRange(protoWeatherDataPoints);
             protoWeatherDataResponse.StatusCode = 200;
+
+            return Task.FromResult(protoWeatherDataResponse);
+        }
+        public override Task<ProtoWeatherDataResponse> GetWeatherDataByStation(ProtoWeatherStation request, ServerCallContext context)
+        {
+            var weatherDatapoints = (from weatherdatapoint in _weatherStationDao.GetQueryable()
+                where weatherdatapoint.Station.StationId == request.StationId
+                select weatherdatapoint);
+
+            ProtoWeatherDataResponse protoWeatherDataResponse = new ProtoWeatherDataResponse();
+            protoWeatherDataResponse.WeatherDataPoints.AddRange(_mapper.Map<List<ProtoWeatherDataPoint>>(weatherDatapoints));
 
             return Task.FromResult(protoWeatherDataResponse);
         }

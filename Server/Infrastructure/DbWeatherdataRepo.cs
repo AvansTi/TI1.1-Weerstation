@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Server.DomainServices;
 using Shared.Domain;
 
 namespace gRPCServer.Infrastructure;
 
-public class DbWeatherdataRepo
+public class DbWeatherdataRepo : IWeatherStationDAO
 {
     protected WeatherStationContext _context { get; set; }
 
