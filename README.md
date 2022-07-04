@@ -20,6 +20,7 @@ Both the client and server program use Grpc and Google's ProtoBuffers to communi
 Docker is used to run both the client and server programs
 
 The java client uses a maven project
+
 # How to run with Docker:
 
 ## Run client:
