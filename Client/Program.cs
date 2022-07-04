@@ -27,13 +27,11 @@ namespace Client
             // grpcDemo(mapper);
             Requester requester = new Requester();
             var myTimer = new System.Timers.Timer(2000);
-            // Tell the timer what to do when it elapses
             myTimer.Elapsed += ( sender, e ) => requester.ReadConsoleAndSendRequest();
             myTimer.AutoReset = true;
-            // And start it        
-            // myTimer.Enabled = true;
             GC.KeepAlive(myTimer);
             myTimer.Start();
+            //Console.ReadLine is necessary to keep the console app running after starting the timer
             Console.ReadLine();
         }
 

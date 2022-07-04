@@ -30,15 +30,15 @@ namespace Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
-            //server=db; port=3306; database=tiweerstationdb; uid=weerstation-user; pwd=1234
-            string mySqlConnectionStr = $"server={Configuration.GetConnectionString("DefaultUrl")}; " +
+            //Example string: server=db; port=3306; database=tiweerstationdb; uid=some-user; pwd=1234
+            string sqlConnectionStr = $"server={Configuration.GetConnectionString("DefaultUrl")}; " +
                                         $"port={Configuration.GetConnectionString("DefaultPort")}; " +
                                         $"database={Environment.GetEnvironmentVariable("MYSQL_DATABASE")}; " +
                                         $"uid={Environment.GetEnvironmentVariable("MYSQL_USER")}; " +
                                         $"pwd={Environment.GetEnvironmentVariable("MYSQL_PASSWORD")}";
-            services.AddDbContext<WeatherStationContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+            services.AddDbContext<WeatherStationContext>(options => options.UseMySql(sqlConnectionStr, ServerVersion.AutoDetect(sqlConnectionStr)));
             services.AddGrpc();
+            services.AddLogging();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 

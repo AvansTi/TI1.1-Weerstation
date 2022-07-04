@@ -16,7 +16,7 @@ namespace Client.SerialConsole
         /// <summary>
         /// Opens the serial port for communications
         /// </summary>
-        /// <returns></returns>
+        /// <returns>OK (1) or NOK (0)</returns>
         public int OpenSerialPort(string comport, int baudrate)
         {
             if (comport == null)
@@ -40,7 +40,7 @@ namespace Client.SerialConsole
         /// When an answer is given (characters '\n' and '\r') the device is
         /// awake and standing by.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>OK (1) or NOK (0)</returns>
         public int WakeUp()
         {
             int result = NOK;
@@ -90,7 +90,7 @@ namespace Client.SerialConsole
             while (Conn.BytesToRead > 0)
                 Conn.Read(new byte[Conn.BytesToRead], 0, Conn.BytesToRead);
 
-            // Issue de LOOP
+            // Issue the LOOP
             Conn.Write(cmd, 0, cmd.Length);
             Thread.Sleep(2500);
 
@@ -133,7 +133,7 @@ namespace Client.SerialConsole
         /// <summary>
         /// Closes the serial port.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>OK (1) or NOK (0)</returns>
         public int CloseSerialPort()
         {
             if(Conn != null)
@@ -148,7 +148,7 @@ namespace Client.SerialConsole
             }
         }
 
-        // See chapter XII. CRC calculation/page 38 in VantageSerialProtocolDocs_v261
+        // See chapter XII. CRC calculation or page 38 in VantageSerialProtocolDocs_v261
         private readonly uint[] _crcTable = {
             0x0, 0x1021, 0x2042, 0x3063, 0x4084, 0x50a5, 0x60c6, 0x70e7,
             0x8108, 0x9129, 0xa14a, 0xb16b, 0xc18c, 0xd1ad, 0xe1ce, 0xf1ef,
