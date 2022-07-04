@@ -2,7 +2,13 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders />
-    <explicitIncludes />
+    <explicitIncludes>
+      <Path>.env</Path>
+      <Path>Dockerfile.client</Path>
+      <Path>Dockerfile.server</Path>
+      <Path>README.md</Path>
+      <Path>docker-compose.yml</Path>
+    </explicitIncludes>
     <explicitExcludes />
   </component>
 </project>
