@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 using System.Timers;
 using AutoMapper;
 using AutoMapper.Execution;
-using Client.Domain;
+using Client.DomainServices;
 using Client.SerialConsole;
 using Google.Protobuf.Collections;
 using Shared.Domain;
-using Shared.DomainServices;
+using Shared.ApplicationServices;
 using Shared.Protos;
 using Grpc.Net.Client;
 using Shared.SerialConsole;
@@ -22,17 +22,19 @@ namespace Client
         static void Main(string[] args)
         {
             // structDemo(mapper);
-            grpcDemo();
-            //Requester requester = new Requester();
-            //var myTimer = new System.Timers.Timer(5000);
+            // var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfiles>());
+            // var mapper = new Mapper(config);
+            // grpcDemo(mapper);
+            Requester requester = new Requester();
+            var myTimer = new System.Timers.Timer(2000);
             // Tell the timer what to do when it elapses
-            //myTimer.Elapsed += ( sender, e ) => requester.repeatingTask();
-            //myTimer.AutoReset = true;
+            myTimer.Elapsed += ( sender, e ) => requester.ReadConsoleAndSendRequest();
+            myTimer.AutoReset = true;
             // And start it        
             // myTimer.Enabled = true;
-            //GC.KeepAlive(myTimer);
-            //myTimer.Start();
-            //Console.ReadLine();
+            GC.KeepAlive(myTimer);
+            myTimer.Start();
+            Console.ReadLine();
         }
 
         public static void structDemo(Mapper mapper)
@@ -64,84 +66,79 @@ namespace Client
             Console.WriteLine(dataPoint);
         }
 
-        public static void grpcDemo()
+        public static void grpcDemo(Mapper mapper)
         {
-            //    List<WeatherDataPoint> points = new List<WeatherDataPoint>();
-            //    points.Add(
-            //        new WeatherDataPoint(){ 
-            //            AvgWindSpeed = 15,
-            //            Barometer = 18,
-            //            BattLevel = 22,
-            //            InsideHum = 49,
-            //            InsideTemp = 89,
-            //            OutsideHum = 3948,
-            //            OutsideTemp = 60,
-            //            RainRate = 892,
-            //            SolarRad = 1289,
-            //            Station = new WeatherStation 
-            //            {
-            //                Name = "Het TI weerstation", 
-            //                Description = "Dit is het weerstation van Avans" ,
-            //                Location = "Breda",
-            //            },
-            //            Sunrise = 3487,
-            //            Sunset = 3984,
-            //            Timestamp = DateTime.Now,
-            //            Ts = 21948,
-            //            UvLevel = 214,
-            //            WindDir = 123,
-            //            WindSpeed = 14,
-            //            XmitBatt = 144,
+            List<WeatherDataPoint> points = new List<WeatherDataPoint>();
+            points.Add(
+                new WeatherDataPoint(){ 
+                    AvgWindSpeed = 15,
+                    Barometer = 18,
+                    BattLevel = 22,
+                    InsideHum = 49,
+                    InsideTemp = 89,
+                    OutsideHum = 3948,
+                    OutsideTemp = 60,
+                    RainRate = 892,
+                    SolarRad = 1289,
+                    Station = new WeatherStation 
+                    {
+                        Name = "Het TI weerstation", 
+                        Description = "Dit is het weerstation van Avans" ,
+                        Location = "Breda",
+                    },
+                    Sunrise = 3487,
+                    Sunset = 3984,
+                    Timestamp = DateTime.Now,
+                    Ts = 21948,
+                    UvLevel = 214,
+                    WindDir = 123,
+                    WindSpeed = 14,
+                    XmitBatt = 144,
 
-            //        }
-            //    );
-            //    points.Add(
-            //        new WeatherDataPoint
-            //        {
-            //            AvgWindSpeed = 15,
-            //            Barometer = 18,
-            //            BattLevel = 22,
-            //            InsideHum = 49,
-            //            InsideTemp = 864,
-            //            OutsideHum = 3948,
-            //            OutsideTemp = 60,
-            //            RainRate = 892,
-            //            SolarRad = 1289,
-            //            Station = new WeatherStation
-            //            {
-            //                Name = "Het stan weerstation",
-            //                Description = "Dit is het weerstation van Stan",
-            //                Location = "Gorinchem",
-            //            },
-            //            Sunrise = 3487,
-            //            Sunset = 3984,
-            //            Timestamp = DateTime.Now,
-            //            Ts = 21948,
-            //            UvLevel = 214,
-            //            WindDir = 123,
-            //            WindSpeed = 14,
-            //            XmitBatt = 144,
+                }
+            );
+            points.Add(
+                new WeatherDataPoint
+                {
+                    AvgWindSpeed = 15,
+                    Barometer = 18,
+                    BattLevel = 22,
+                    InsideHum = 49,
+                    InsideTemp = 864,
+                    OutsideHum = 3948,
+                    OutsideTemp = 60,
+                    RainRate = 892,
+                    SolarRad = 1289,
+                    Station = new WeatherStation
+                    {
+                        Name = "Het stan weerstation",
+                        Description = "Dit is het weerstation van Stan",
+                        Location = "Gorinchem",
+                    },
+                    Sunrise = 3487,
+                    Sunset = 3984,
+                    Timestamp = DateTime.Now,
+                    Ts = 21948,
+                    UvLevel = 214,
+                    WindDir = 123,
+                    WindSpeed = 14,
+                    XmitBatt = 144,
 
-            //        }
-            //    );
-            //    var protoWeatherData = new ProtoWeatherData();
-            //        protoWeatherData.WeatherDataPoints.AddRange(mapper.Map<List<ProtoWeatherDataPoint>>(points));
+                }
+            );
+            var protoWeatherData = new ProtoWeatherData();
+                protoWeatherData.WeatherDataPoints.AddRange(mapper.Map<List<ProtoWeatherDataPoint>>(points));
 
-            //    Console.WriteLine(protoWeatherData.WeatherDataPoints.First().Timestamp);
-            //    Console.WriteLine(points.First().Timestamp);
-
-            Console.WriteLine("Druk op een toets om te starten");
-            Console.ReadLine();
-            using var channel = GrpcChannel.ForAddress("http://localhost:5000");
+            Console.WriteLine(protoWeatherData.WeatherDataPoints.First().Timestamp);
+            Console.WriteLine(points.First().Timestamp);
+            using var channel = GrpcChannel.ForAddress("http://127.0.0.1:80");
             var client = new WeatherData.WeatherDataClient(channel);
-            //var reply = await client.SaveWeatherDataAsync(protoWeatherData);
-            var data = client.GetWeatherData(new WeatherDataRequest { Timeunit = "day", TimeAmount = 20}); 
+            var reply = client.SaveWeatherDataAsync(protoWeatherData).ResponseAsync.Result;
+            var data = client.GetWeatherData(new WeatherDataRequest { Timeunit = "day", TimeAmount = 6}); 
             foreach(var point in data.WeatherDataPoints)
             {
                 Console.WriteLine(point.WindSpeed);
             }
-            Console.WriteLine("Druk op een toets om te stoppen");
-            Console.ReadLine();
         }
     }
 }

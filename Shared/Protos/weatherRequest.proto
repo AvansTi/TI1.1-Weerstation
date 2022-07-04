@@ -4,16 +4,16 @@ option csharp_namespace = "Shared.Protos";
 import "google/protobuf/timestamp.proto";
 package weatherRequest;
 
-// The greeting service definition.
+// The Weatherdata service definition.
 service WeatherData {
-  // Sends a greeting
+  // Sends weather data to server to be saved
   rpc SaveWeatherData (ProtoWeatherData) returns (SavedReply);
-  rpc GetWeatherData(WeatherDataRequest) returns (ProtoWeatherData);
-  rpc GetLastDataPoint(WeatherDataRequest) returns (ProtoWeatherData);
-  rpc GetWeatherDataBetween(TimeBlock) returns (ProtoWeatherData);
-  rpc GetWeatherDataByStation(ProtoWeatherStation) returns(ProtoWeatherData);
+  rpc GetWeatherData(WeatherDataRequest) returns (ProtoWeatherDataResponse);
+  rpc GetLastDataPoint(WeatherDataRequest) returns (ProtoWeatherDataResponse);
+  rpc GetWeatherDataBetween(TimeBlock) returns (ProtoWeatherDataResponse);
+  rpc GetWeatherDataByStation(ProtoWeatherStation) returns(ProtoWeatherDataResponse);
 }
-// The request message containing the user's name.
+// Request containing weatherdata of a single point in time
 message ProtoWeatherDataPoint {
   int32 avgWindSpeed = 1;
   int32 barometer = 2;
@@ -34,21 +34,26 @@ message ProtoWeatherDataPoint {
   int32 windDir = 17;
   int32 xmitBatt = 18;
 }
-
+//A weather station
 message ProtoWeatherStation{
 	int32 stationId = 1;
 	string name = 2;
 	string location = 3;
 	string description = 4;
 }
-
+//A message containing multiple weatherdatapoints
 message ProtoWeatherData{
 	repeated ProtoWeatherDataPoint WeatherDataPoints = 1;
 }
+message ProtoWeatherDataResponse{
+  repeated ProtoWeatherDataPoint WeatherDataPoints = 1;
+  int32 statusCode = 2;
+}
 
-// The response message containing the greetings.
+// The response message containing a message.
 message SavedReply {
   string message = 1;
+  int32 statusCode = 2;
 }
 
 message WeatherDataRequest{

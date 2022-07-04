@@ -1,6 +1,6 @@
 ﻿using Shared;
 using gRPCServer;
-using gRPCServer.Repos;
+using gRPCServer.Infrastructure;
 using Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Shared.DomainServices;
+using Shared.ApplicationServices;
 
 namespace Server
 {
@@ -30,10 +30,16 @@ namespace Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
+            // string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
+            //server=db; port=3306; database=tiweerstationdb; uid=weerstation-user; pwd=1234
+            string mySqlConnectionStr = $"server={Configuration.GetConnectionString("DefaultUrl")}; " +
+                                        $"port={Configuration.GetConnectionString("DefaultPort")}; " +
+                                        $"database={Environment.GetEnvironmentVariable("MYSQL_DATABASE")}; " +
+                                        $"uid={Environment.GetEnvironmentVariable("MYSQL_USER")}; " +
+                                        $"pwd={Environment.GetEnvironmentVariable("MYSQL_PASSWORD")}";
             services.AddDbContext<WeatherStationContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
             services.AddGrpc();
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

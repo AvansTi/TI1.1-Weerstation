@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Client.Domain;
+using Client.DomainServices;
 using Shared.Protos;
 
-namespace Client.Repos;
+namespace Client.Infrastructure;
 
 public class InMemoryWeatherDataRequestCache : IWeatherDataRequestCache
 {
@@ -20,5 +20,10 @@ public class InMemoryWeatherDataRequestCache : IWeatherDataRequestCache
     public int GetCount()
     {
         return cache.Count;
+    }
+
+    public void Clear()
+    {
+        cache.Clear();
     }
 }
