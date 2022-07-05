@@ -11,7 +11,7 @@ namespace Client.SerialConsole
 {
     public class ConnectionManager : IWeatherConsoleDAO
     {
-        private readonly string comport;
+        private readonly string serialport = null;
         private readonly int baudrate;
 
         /// <summary>
@@ -20,14 +20,24 @@ namespace Client.SerialConsole
         public ConnectionManager()
         {
             var serialPorts = System.IO.Ports.SerialPort.GetPortNames();
-            Console.WriteLine("Found the following COM ports: ");
+            Console.WriteLine("Found the following serial ports: ");
             
             foreach (var item in serialPorts)
             {
                 Console.WriteLine(item);
             }
-            comport = serialPorts[0];
-            baudrate = 19200;
+
+            if(serialPorts.Length > 0)
+            {
+                this.serialport = serialPorts[0];
+                Console.WriteLine($"Selected serial port: {this.serialport}");
+            }
+            else
+            {
+                Console.WriteLine("No serial ports found!");
+            }
+
+            this.baudrate = 19200;
         }
         //Could take 1.5 to 2 minutes
         /// <summary>
@@ -38,9 +48,12 @@ namespace Client.SerialConsole
         /// <returns></returns>
         public WeatherDataPoint Get(Mapper mapper)
         {
+            if (this.serialport == null)
+                return null;
+
             WeatherStationConnection connection = new WeatherStationConnection();
             WeatherDataPoint dataPoint =  null;
-            int result = connection.OpenSerialPort(this.comport, this.baudrate);
+            int result = connection.OpenSerialPort(this.serialport, this.baudrate);
 
             //Could not open the com port, return null
             if(result == OK)
@@ -56,7 +69,7 @@ namespace Client.SerialConsole
             result = connection.CloseSerialPort();
             
             if(result == NOK)
-                Console.WriteLine("Could not close COM port!");
+                Console.WriteLine("Could not close serial port!");
             
             return dataPoint;
         }
