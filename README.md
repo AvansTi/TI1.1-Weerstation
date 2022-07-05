@@ -3,7 +3,7 @@
 TiWeatherStation is a C# project that is divided into these parts:
 ![](Documentation/architecture.jpg)
 The C# monorepo (the one you are in right now), consists of 3 projects: Client, Server and Shared. Besides this repository there is also the java repository
-[//]: # (Add java monorepo link)
+https://github.com/StanStudentHonk/TIWeerstationClient:
 
 The client project is a program that retrieves weatherdata from a weather console via a serial/usb connection.
 After it has retrieved the data, it is sent to the server
